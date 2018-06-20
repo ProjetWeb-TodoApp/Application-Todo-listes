@@ -10,11 +10,29 @@ session_start();
 
 
 // dans le GET, on admet qu'on reçois 'password' et 'login' 
-case: "login"
+case: "login":
 	if ($login = valider("login"))
-		if ($passe = valider("password")){
+		if ($password = valider("password")){
+			//On appelle bien la fonction de sécurisation, qui crée les variables de session suivantes:
+			//$_SESSION['usr_login'] = $login;
+			//$_SESSION['usr_id'] = $id;
+			//$_SESSION['connexion_time'] = date("H:i:s");
+			//$_SESSION['is_project_manager'] = is_project_manager($usr_id);
+			//$_SESSION['online'] = true;
 			
- case: "logout"
+			//On appelle aussi la fonction is_project_manager() qui devra être faite dans modele
+			verif_user($login,$password);
+			}
+	break;
+			
+			
+ case: "logout":
+ 
+ 
+ 
+ 
+ 
+ 
  
 // on pourra attribuer les realisateurs
 //Entrées: $tsk_title, $tsk_description, $tsk_
