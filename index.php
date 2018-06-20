@@ -30,17 +30,6 @@ if (!$view) $view = "accueil";
 switch($view)
 {
 
-    case "accueil" :
-        include("templates/accueil.php");
-        break;
-
-    case "login" :
-        include("templates/login.php");
-        break;
-
-    case "users" :
-        include("templates/users.php");
-        break;
 
     default : // si le template correspondant à l'argument existe, on l'affiche
         if (file_exists("templates/$view.php"))
@@ -50,7 +39,6 @@ switch($view)
 
 
 // Dans tous les cas, on affiche le pied de page
-// Qui contient les coordonnées de la personne si elle est connectée
 include("templates/footer.php");
 
 
