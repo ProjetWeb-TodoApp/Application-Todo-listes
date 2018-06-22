@@ -11,6 +11,7 @@ session_start();
 //echo 'console.log("dans le session start");';
 if ($action = valider("action"))
 	{
+	ob_start();	
 	//echo 'console.log("action valide");';
 
 
@@ -22,7 +23,7 @@ if ($action = valider("action"))
 		// la connexion crée toutes les variables de session et rediri
 		case "login":
 			//echo 'console.log("dans le case login");';
-			if ($login = valider("login"))
+			if ($login = valider("login")) {
 				if ($password = valider("password")){
 					//On appelle bien la fonction de sécurisation, qui crée les variables de session suivantes:
 					//$_SESSION['usr_login'] = $login;
@@ -36,6 +37,7 @@ if ($action = valider("action"))
 					check_user($login,$password);
 					$qs="?view=home";
 					}
+			}	
 		break;
 			
 		//on a appuyé sur le bouton "logout", donc on détruit la session et on renvoie vers l'index qui va nous rediriger vers la vue "home"
@@ -80,6 +82,6 @@ $urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
 
 header("Location:" . $urlBase . $qs);
 	//qs doit contenir le symbole '?'
-	
+ob_end_flush();	
 
 ?>		

@@ -1,5 +1,7 @@
 <?php
 
+
+
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
@@ -21,7 +23,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
             <form action="controller.php" method="GET">
                 <label>Log in<input type="text" name="login"></label>
                 <label>Password<input type="text" name="password"></label>
-                <input type="submit" name="action" value="Connexion" />
+                <input type="submit" name="action" value="login" />
             </form>
         </div>
 

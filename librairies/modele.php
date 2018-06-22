@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('maLibSQL.pdo.php');
 
 
@@ -25,8 +26,8 @@ function prompt_checklist_task(){}
 
 function check_user_BDD($login,$password){
     $sql="SELECT login, password,id from user where login='$login '";
-    $user=parcoursRS(SQLSelect($sql));
-    if ($user["password"]==$password){return $user["id"];}
+    $user = parcoursRS(SQLSelect($sql));	
+	if ($user[0]["password"]==$password){return $user[0]["id"];}
     else {return false;};
 }
 

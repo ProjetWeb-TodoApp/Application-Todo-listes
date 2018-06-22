@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 // V1.0 du 18 mai 2018
 
 if (file_exists("./config_BDD.php"))

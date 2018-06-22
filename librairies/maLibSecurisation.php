@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once "maLibUtils.php";    // Car on utilise la fonction valider()
 include_once "modele.php";    // Car on utilise la fonction connecterUtilisateur()
 //console.log("dans maLibSecurisation");
@@ -26,7 +28,7 @@ function check_user($login, $password)
     if ($usr_id != false) {
         $_SESSION['usr_login'] = $login;
         $_SESSION['usr_id'] = $usr_id;
-        $_SESSION['connexion_time'] = date("H:i:s");
+        $_SESSION['connection_time'] = date("H:i:s");
 		//besoin de "is_project_manager" qui renvoie true ou false.
         $_SESSION['is_project_manager'] = is_project_manager($usr_id);
         $_SESSION['online'] = true;

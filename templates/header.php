@@ -14,8 +14,10 @@
 
     <?php
     // Si l'utilisateur n'est pas connecte, on affiche un lien de connexion
+
 	
-	tprint($_SESSION);
+	
+	
     if (!valider("online", "SESSION"))
         echo "<a href=\"index.php?view=login\">Log in</a>";
     else {
@@ -26,8 +28,8 @@
     // Si l'utilisateur est connecte, on affiche un lien de deconnexion
     if (valider("online","SESSION"))
     {
-        echo "Utilisateur <b>$_SESSION[pseudo]</b> connecté depuis <b>$_SESSION[heureConnexion]</b> &nbsp; ";
-        echo "<a href=\"controleur.php?action=Logout\">Se Déconnecter</a>";
+        echo "Utilisateur <b>$_SESSION[usr_login]</b> connecté depuis <b>$_SESSION[connection_time]</b> &nbsp; ";
+        echo "<a href=\"controller.php?action=logout\">Se Déconnecter</a>";
     }
     ?>
 
