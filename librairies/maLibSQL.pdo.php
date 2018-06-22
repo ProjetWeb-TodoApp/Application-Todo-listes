@@ -1,13 +1,14 @@
 <?php
 
+session_start();
 // V1.0 du 18 mai 2018
 
-if (file_exists("./config.php"))
-    include_once("./config.php");
-else if (file_exists("../libs/config.php"))
-    include_once "../libs/config.php";
-else if (file_exists("libs/config.php"))
-    include_once "libs/config.php";
+if (file_exists("./config_BDD.php"))
+    include_once("./config_BDD.php");
+else if (file_exists("../libs/config_BDD.php"))
+    include_once "../libs/config_BDD.php";
+else if (file_exists("libs/config_BDD.php"))
+    include_once "libs/config_BDD.php";
 else die("Fichier config introuvable");
 
 /**
