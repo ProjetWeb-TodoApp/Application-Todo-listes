@@ -1,6 +1,7 @@
 
 <?php
 /* on a repris pour cette page le code de la page index.php du td TinyMVC */
+
 session_start();
 
 /*
