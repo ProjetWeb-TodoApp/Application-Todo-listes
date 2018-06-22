@@ -21,16 +21,19 @@ include_once("librairies/maLibForms.php");
     <div id="usr_tasks">
         <h3> Your tasks </h3>
         <?php
-        $tasks= prompt_task_user($_SESSION["id_user"]);
+        $tasks= prompt_task_user($_SESSION["usr_id"]);
         mKTables($tasks);
         ?>
     </div>
 
     <div id = "grp_tasks">
         <h3> Team's tasks </h3>
-        <a href="index.php?view=task_creation">Add a new task</a>
         <?php
-       $grp_tsk=prompt_task_group($_SESSION["id_user"]);
+        $user=$_SESSION["usr_id"];
+        if (canEdit($user)) {
+            echo " <a href='index.php?view=task_creation'>Add a new task</a>";
+}
+       $grp_tsk=prompt_task_group($user);
         mkTables($grp_tsks);
         ?>
 

@@ -35,6 +35,14 @@ function is_project_manager($id){
     $sql="SELECT project_manager from user where id=$id";
     return(SQLGetChamp($sql)==1);
 }
+
+
+
+
+function affiche_checklist_task(){}
+
+function verif_user_BDD(){}
+
 function late_task(){}
 
 function delete_task(){}
