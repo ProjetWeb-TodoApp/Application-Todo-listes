@@ -24,7 +24,7 @@ function prompt_task_user($user,$order_by=null){}
 function prompt_checklist_task(){}
 
 function check_user_BDD($login,$password){
-    $sql="SELECT login, password from user where login='$login '";
+    $sql="SELECT login, password,id from user where login='$login '";
     $user=parcoursRS(SQLSelect($sql));
     if ($user["password"]==$password){return $user["id"];}
     else {return false;};

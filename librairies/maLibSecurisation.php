@@ -2,7 +2,7 @@
 
 include_once "maLibUtils.php";    // Car on utilise la fonction valider()
 include_once "modele.php";    // Car on utilise la fonction connecterUtilisateur()
-console.log("dans maLibSecurisation");
+//console.log("dans maLibSecurisation");
 /**
  * @file login.php
  * Fichier contenant des fonctions de vérification de logins
@@ -21,7 +21,7 @@ console.log("dans maLibSecurisation");
  */
 function check_user($login, $password)
 {
-	console.log("dans check_user");
+	//console.log("dans check_user");
     $usr_id = check_user_BDD($login, $password);
     if ($usr_id != false) {
         $_SESSION['usr_login'] = $login;
@@ -30,7 +30,7 @@ function check_user($login, $password)
 		//besoin de "is_project_manager" qui renvoie true ou false.
         $_SESSION['is_project_manager'] = is_project_manager($usr_id);
         $_SESSION['online'] = true;
-		console.log("variables crées");
+		//console.log("variables crées");
         return (true);
     }
     return (false);

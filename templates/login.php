@@ -18,7 +18,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         }
         ?>
         <div id="formLogin">
-            <form action="../controller.php" method="GET">
+            <form action="controller.php" method="GET">
                 <label>Log in<input type="text" name="login"></label>
                 <label>Password<input type="text" name="password"></label>
                 <input type="submit" name="action" value="Connexion" />
