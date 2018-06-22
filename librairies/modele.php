@@ -13,7 +13,7 @@ function prompt_task_group($field_tab,$order_by=null){}
 
 function prompt_task_user($user_id){
 
-    $sql="SELECT * from task where id='$user_id' order by date ";
+    $sql="SELECT title, description, deadline from task where id='$user_id' order by date ";
 
 
 
