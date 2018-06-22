@@ -19,7 +19,7 @@ function prompt_task_group($group,$order_by=null){
 
 }
 
-function prompt_task_user($user,$order_by=null){}
+    $sql="SELECT title, description, deadline from task where id='$user_id' order by date ";
 
 
 function prompt_checklist_task(){}
