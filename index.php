@@ -12,7 +12,7 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 */
 
 
-include_once "libs/maLibUtils.php";
+include_once "librairies/maLibUtils.php";
 
 // Dans tous les cas, on affiche l'entete,
 // qui contient les balises de structure de la page, le logo, etc.
@@ -24,7 +24,7 @@ include("templates/header.php");
 $view = valider("view");
 
 // S'il est vide, on charge la vue accueil par défaut
-if (!$view) $view = "accueil";
+if (!$view) $view = "home";
 
 // En fonction de la vue à afficher, on appelle tel ou tel template
 switch($view)

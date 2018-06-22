@@ -12,11 +12,15 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     <div id="corps">
 
         <h1>Connexion</h1>
-
+        <?php
+        if ($msg = valider('msg')) {
+            echo('<strong>' . $msg . '</strong>');
+        }
+        ?>
         <div id="formLogin">
-            <form action="controller.php" method="GET">
-                Login : <input type="text" name="login" /><br />
-                Passe : <input type="password" name="passe" /><br />
+            <form action="../controller.php" method="GET">
+                <label>Log in<input type="text" name="login"></label>
+                <label>Password<input type="text" name="password"></label>
                 <input type="submit" name="action" value="Connexion" />
             </form>
         </div>
