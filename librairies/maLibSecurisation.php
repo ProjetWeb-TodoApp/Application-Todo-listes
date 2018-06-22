@@ -2,7 +2,7 @@
 
 include_once "maLibUtils.php";    // Car on utilise la fonction valider()
 include_once "modele.php";    // Car on utilise la fonction connecterUtilisateur()
-
+console.log("dans maLibSecurisation");
 /**
  * @file login.php
  * Fichier contenant des fonctions de vérification de logins
@@ -19,15 +19,18 @@ include_once "modele.php";    // Car on utilise la fonction connecterUtilisateur
  * @param string $password
  * @return false ou true ; un effet de bord est la création de variables de session
  */
-function verif_user($login, $password)
+function check_user($login, $password)
 {
-    $usr_id = verif_user_BDD($login, $password);
+	console.log("dans check_user");
+    $usr_id = check_user_BDD($login, $password);
     if ($usr_id != false) {
         $_SESSION['usr_login'] = $login;
         $_SESSION['usr_id'] = $usr_id;
         $_SESSION['connexion_time'] = date("H:i:s");
+		//besoin de "is_project_manager" qui renvoie true ou false.
         $_SESSION['is_project_manager'] = is_project_manager($usr_id);
         $_SESSION['online'] = true;
+		console.log("variables crées");
         return (true);
     }
     return (false);
