@@ -1,0 +1,56 @@
+/*https://www.materialpalette.com/*/
+:root {
+    --dark-primary-color: #616161;
+    --default-primary-color: #9E9E9E;
+    --light-primary-color: #F5F5F5;
+    --accent-color: #8BC34A;
+    --primary-text-color: #212121;
+    --secondary-text-color: #757575;
+    --divider-color: #BDBDBD;
+    --title-font: 'Advent Pro', sans-serif;
+    --body-font: 'Lato', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: var(--body-font);
+}
+
+h1, h2 {
+    font-family: var(--title-font);
+}
+
+#app_title {
+    padding: 1em 0 0 2em;
+    margin: 0.2em;
+}
+
+header, footer {
+    align-items: stretch;
+    background-color: var(--default-primary-color);
+    color: var(--primary-text-color);
+}
+nav {
+    margin: 0.2em;
+}
+
+nav > ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu_item {
+    padding: 0 0.5em;
+    font-size: 1.5em;
+}
+
+.menu_item > a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
+
