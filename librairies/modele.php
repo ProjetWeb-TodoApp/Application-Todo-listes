@@ -5,6 +5,7 @@ include_once('maLibSQL.pdo.php');
 
 //renvoi rien
 //les id des utlisateurs sont rentrés en tableaux dans usr_tab
+
 function new_task($title,$description=null,$deadline,$completion_date=null,$parent_task=null,$id_group,$id_usr_tab){
     $sql="INSERT INTO task (id,title,description,deadline,completion_date,parent_task,id_group) VALUES (7,'$title', '$description', '$deadline', '$completion_date', $parent_task, $id_group)";
     SQLInsert($sql);
@@ -36,6 +37,14 @@ function prompt_task_user($usr_id) {
 	$sql="SELECT t.title, t.description, t.deadline, from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
 	return parcoursRs(SQLSelect($sql));
 }
+
+
+//Renvoie le group d'un utilisateur
+
+function prompt_group_user($usr_id) {
+
+}
+
 
 
 function edit_task($grp,$usr_tab,$label,$chef=null,$description=null,$deadline,$grp_id,$parent=null){
@@ -78,9 +87,15 @@ function check_user_BDD($login,$password){
     else {return false;};
 }
 
+//Renvoie si un user est chef de projet
 function is_project_manager($id){
     $sql="SELECT project_manager from user where id=$id";
     return(SQLGetChamp($sql)==1);
+}
+
+//Renvoie si un user est chef de group
+function is_group_manager($id){
+    
 }
 
 
