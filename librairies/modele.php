@@ -31,11 +31,18 @@ function prompt_user_task($id_task){
     return parcoursRs(SQLSelect($sql));
 }
 
+//Renvoie les taches d'un utilisateur
+function prompt_task_user($usr_id) {
+	$sql="SELECT t.title, t.description, t.deadline, from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
+	return parcoursRs(SQLSelect($sql));
+}
+
+
 function edit_task($grp,$usr_tab,$label,$chef=null,$description=null,$deadline,$grp_id,$parent=null){
 
 }
-//renvoit la liste des taches qui devazit etre termine avant la date passée en entrée
-//enrrée: date(format:"année-mois-jour")
+//renvoit la liste des taches qui devraient etre terminees avant la date passée en entrée
+//entrée: date(format:"année-mois-jour")
 function late_task($date){
     $sql="SELECT * from task where deadline>'$date'";
     return parcoursRs(SQLSelect($sql));
