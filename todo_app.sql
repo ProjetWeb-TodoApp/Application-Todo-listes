@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 22 juin 2018 à 16:51
+-- Généré le :  Dim 24 juin 2018 à 19:26
 -- Version du serveur :  5.7.17
 -- Version de PHP :  5.6.30
 
@@ -126,6 +126,7 @@ INSERT INTO `realize` (`id_user`, `id_task`) VALUES
 (2, 1),
 (7, 1),
 (10, 1),
+(2, 2),
 (11, 2),
 (12, 2),
 (14, 2),
@@ -242,7 +243,7 @@ ALTER TABLE `group`
 --
 ALTER TABLE `realize`
   ADD UNIQUE KEY `couple_user_task` (`id_user`,`id_task`),
-  ADD KEY `idtask` (`id_task`);
+  ADD KEY `realize_task` (`id_task`);
 
 --
 -- Index pour la table `task`
@@ -256,6 +257,30 @@ ALTER TABLE `task`
 ALTER TABLE `user`
   ADD UNIQUE KEY `id` (`id`);
 
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `checklist`
+--
+ALTER TABLE `checklist`
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT pour la table `group`
+--
+ALTER TABLE `group`
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `task`
+--
+ALTER TABLE `task`
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Contraintes pour les tables déchargées
 --
@@ -277,8 +302,8 @@ ALTER TABLE `checklist`
 -- Contraintes pour la table `realize`
 --
 ALTER TABLE `realize`
-  ADD CONSTRAINT `idtask` FOREIGN KEY (`id_task`) REFERENCES `task` (`id`),
-  ADD CONSTRAINT `iduser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `realize_task` FOREIGN KEY (`id_task`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `realize_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
