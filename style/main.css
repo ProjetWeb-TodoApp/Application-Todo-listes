@@ -1,20 +1,39 @@
 /*https://www.materialpalette.com/*/
 :root {
-    --dark-primary-color: #616161;
-    --default-primary-color: #9E9E9E;
-    --light-primary-color: #F5F5F5;
+    /*Firts color theme*/
+    /*
+     --dark-primary-color: #616161;
+     --default-primary-color: #b8b8be;
+     --light-primary-color: #F5F5F5;
+     --accent-color: #8BC34A;
+     --primary-text-color: #212121;
+     --secondary-text-color: #757575;
+     --divider-color: #BDBDBD;
+
+     /
+     /*Alernative color theme */
+    --dark-primary-color: #455A64;
+    --default-primary-color: #607D8B;
+    --light-primary-color: #CFD8DC;
     --accent-color: #8BC34A;
-    --primary-text-color: #212121;
-    --secondary-text-color: #757575;
-    --divider-color: #BDBDBD;
+    --primary-text-color: #DDDDDD;
+    --secondary-text-color: #212121;
+    --divider-color: #BDBDB;
+
     --title-font: 'Advent Pro', sans-serif;
     --body-font: 'Lato', sans-serif;
+
+}
+
+/*---------------------------------------------*\
+                      BASE
+\*---------------------------------------------*/
+
+html {
+    height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
     font-family: var(--body-font);
 }
 
@@ -22,26 +41,82 @@ h1, h2 {
     font-family: var(--title-font);
 }
 
-#app_title {
-    padding: 1em 0 0 2em;
-    margin: 0.2em;
-}
-
-header, footer {
-    align-items: stretch;
+header, footer, section {
     background-color: var(--default-primary-color);
     color: var(--primary-text-color);
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.15);
 }
+
 nav {
     margin: 0.2em;
 }
 
-nav > ul {
+/*---------------------------------------------*\
+                     LAYOUT
+\*---------------------------------------------*/
+.l-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0;
+    height: 100%;
+}
+
+.l-header {
+
+}
+
+.l-footer {
+
+}
+
+.l-main {
     display: flex;
     flex-direction: row;
-    list-style-type: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    margin: 2%;
+    height: 100%;
+    overflow: auto;
+}
+
+.l-section {
+    margin: 0.5em;
+    border-radius: 1em;
+    flex-grow: 4;
+    min-width: 25em;
+    min-height: 150%;
+}
+
+.l-section-small {
+    margin: 0.5em;
+    width: 25em;
+    border-radius: 1em;
+}
+
+/*---------------------------------------------*\
+                     MODULE
+\*---------------------------------------------*/
+
+.account_icon {
+    fill: var(--primary-text-color);
+}
+
+.app_title {
+    padding: 0.5em 0 0 2em;
+    margin: 0.2em;
+}
+
+/* Menu */
+.menu > ul {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    list-style-type: none;
 }
 
 .menu_item {
@@ -53,4 +128,51 @@ nav > ul {
     color: var(--primary-text-color);
     text-decoration: none;
 }
+
+/* connection form*/
+.login_form {
+    background-color: var(--default-primary-color);
+    width: 25em;
+    padding: 20px;
+    height: 15em;
+}
+
+.login_form input {
+    box-sizing: border-box;
+    display: block;
+    width: 80%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid var(--light-primary-color);
+    background: transparent;
+    margin-bottom: 10px;
+    height: 45px;
+    color: var(--primary-text-color);
+}
+
+.login_form input:focus {
+    border-bottom-width:  2px;
+}
+
+.login_form button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-primary-color);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-primary-color);
+    padding: 8px 18px;
+    margin: 10px;
+}
+
+/*---------------------------------------------*\
+                     STATE
+\*---------------------------------------------*/
+
+/* Fin menu*/
+
+/*================================== LOG IN PAGE =======================================*/
+
+
+
 

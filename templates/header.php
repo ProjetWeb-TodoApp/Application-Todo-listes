@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>Todo App</title>
@@ -8,10 +8,10 @@
 </head>
 </html>
 
-<body>
-<header>
-    <h1 id="app_title">Todo App</h1>
-    <nav>
+<body class="l-body">
+<header class="l-header">
+    <h1 class="app_title">Todo App</h1>
+    <nav class="menu">
         <ul>
             <li class="menu_item"><a href="index.php?view=home">Home</a></li>
             <?php
@@ -38,3 +38,4 @@
     </div>
 
 </header>
+
