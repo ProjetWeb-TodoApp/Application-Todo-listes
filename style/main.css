@@ -20,6 +20,8 @@
     --secondary-text-color: #212121;
     --divider-color: #BDBDB;
 
+    --alert-color: darkred;
+
     --title-font: 'Advent Pro', sans-serif;
     --body-font: 'Lato', sans-serif;
 
@@ -50,6 +52,17 @@ header, footer, section {
 nav {
     margin: 0.2em;
 }
+button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-primary-color);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-primary-color);
+    padding: 8px 18px;
+    margin: 10px;
+}
+
 
 /*---------------------------------------------*\
                      LAYOUT
@@ -64,11 +77,21 @@ nav {
 }
 
 .l-header {
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em 2em;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 .l-footer {
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em 2em;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 .l-main {
@@ -87,25 +110,36 @@ nav {
     border-radius: 1em;
     flex-grow: 4;
     min-width: 25em;
-    min-height: 150%;
+    min-height: 25em;
 }
 
 .l-section-small {
     margin: 0.5em;
     width: 25em;
     border-radius: 1em;
+    min-height: 25em;
 }
 
 /*---------------------------------------------*\
                      MODULE
 \*---------------------------------------------*/
+.account {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 2em;
+    align-items:center;
+    justify-content: space-between;
+}
 
 .account_icon {
     fill: var(--primary-text-color);
+    width: 30px;
+    height: 30px;
+    margin: 0.2em;
 }
 
 .app_title {
-    padding: 0.5em 0 0 2em;
     margin: 0.2em;
 }
 
@@ -131,10 +165,11 @@ nav {
 
 /* connection form*/
 .login_form {
+    box-sizing: border-box;
     background-color: var(--default-primary-color);
     width: 25em;
     padding: 20px;
-    height: 15em;
+    align-self: flex-start;
 }
 
 .login_form input {
@@ -146,12 +181,11 @@ nav {
     border-bottom: 1px solid var(--light-primary-color);
     background: transparent;
     margin-bottom: 10px;
-    height: 45px;
     color: var(--primary-text-color);
 }
 
 .login_form input:focus {
-    border-bottom-width:  2px;
+    border-bottom-width: 2px;
 }
 
 .login_form button {
@@ -163,6 +197,11 @@ nav {
     color: var(--dark-primary-color);
     padding: 8px 18px;
     margin: 10px;
+}
+
+.alerte {
+    color: var(--alert-color);
+    font-weight: bold;
 }
 
 /*---------------------------------------------*\
