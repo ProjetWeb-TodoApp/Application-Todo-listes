@@ -1,0 +1,217 @@
+/*https://www.materialpalette.com/*/
+:root {
+    /*Firts color theme*/
+    /*
+     --dark-primary-color: #616161;
+     --default-primary-color: #b8b8be;
+     --light-primary-color: #F5F5F5;
+     --accent-color: #8BC34A;
+     --primary-text-color: #212121;
+     --secondary-text-color: #757575;
+     --divider-color: #BDBDBD;
+
+     /
+     /*Alernative color theme */
+    --dark-primary-color: #455A64;
+    --default-primary-color: #607D8B;
+    --light-primary-color: #CFD8DC;
+    --accent-color: #8BC34A;
+    --primary-text-color: #DDDDDD;
+    --secondary-text-color: #212121;
+    --divider-color: #BDBDB;
+
+    --alert-color: darkred;
+
+    --title-font: 'Advent Pro', sans-serif;
+    --body-font: 'Lato', sans-serif;
+
+}
+
+/*---------------------------------------------*\
+                      BASE
+\*---------------------------------------------*/
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--body-font);
+}
+
+h1, h2 {
+    font-family: var(--title-font);
+}
+
+header, footer, section {
+    background-color: var(--default-primary-color);
+    color: var(--primary-text-color);
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+nav {
+    margin: 0.2em;
+}
+button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-primary-color);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-primary-color);
+    padding: 8px 18px;
+    margin: 10px;
+}
+
+
+/*---------------------------------------------*\
+                     LAYOUT
+\*---------------------------------------------*/
+.l-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0;
+    height: 100%;
+}
+
+.l-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em 2em;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.l-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em 2em;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.l-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    margin: 2%;
+    height: 100%;
+    overflow: auto;
+}
+
+.l-section {
+    margin: 0.5em;
+    border-radius: 1em;
+    flex-grow: 4;
+    min-width: 25em;
+    min-height: 25em;
+}
+
+.l-section-small {
+    margin: 0.5em;
+    width: 25em;
+    border-radius: 1em;
+    min-height: 25em;
+}
+
+/*---------------------------------------------*\
+                     MODULE
+\*---------------------------------------------*/
+.account {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em 2em;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.account_icon {
+    fill: var(--primary-text-color);
+    width: 30px;
+    height: 30px;
+    margin: 0.2em;
+}
+
+.app_title {
+    margin: 0.2em;
+}
+
+/* Menu */
+.menu > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    list-style-type: none;
+}
+
+.menu_item {
+    padding: 0 0.5em;
+    font-size: 1.5em;
+}
+
+.menu_item > a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
+
+/* connection form*/
+.login_form {
+    box-sizing: border-box;
+    background-color: var(--default-primary-color);
+    width: 25em;
+    padding: 20px;
+    align-self: flex-start;
+}
+
+.login_form input {
+    box-sizing: border-box;
+    display: block;
+    width: 80%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid var(--light-primary-color);
+    background: transparent;
+    margin-bottom: 10px;
+    color: var(--primary-text-color);
+}
+
+.login_form input:focus {
+    border-bottom-width: 2px;
+}
+
+.login_form button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--light-primary-color);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-primary-color);
+    padding: 8px 18px;
+    margin: 10px;
+}
+
+.alerte {
+    color: var(--alert-color);
+    font-weight: bold;
+}
+
+/*---------------------------------------------*\
+                     STATE
+\*---------------------------------------------*/
+
+/* Fin menu*/
+
+/*================================== LOG IN PAGE =======================================*/
+
+
+
+
