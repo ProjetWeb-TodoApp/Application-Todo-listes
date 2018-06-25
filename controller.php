@@ -34,10 +34,19 @@ if ($action = valider("action"))
 					
 					//On appelle aussi la fonction is_project_manager() qui devra être faite dans modele
 					//echo 'console.log("dans la boucle");';
-					check_user($login,$password);
-					$qs="?view=home";
+					if (check_user($login,$password)){
+					
+						$qs="?view=home";
 					}
-			}	
+					else {$qs="?view=login&msg=".urlencode("Please enter a valid password");
+					}
+					}
+				else{
+					$qs="?view=login&msg=".urlencode("Please enter a password");
+					}
+			}
+			
+			else {$qs="?view=login&msg=".urlencode("Please enter a username");}
 		break;
 			
 		//on a appuyé sur le bouton "logout", donc on détruit la session et on renvoie vers l'index qui va nous rediriger vers la vue "home"
