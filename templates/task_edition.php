@@ -28,7 +28,7 @@ $usr_id = $_SESSION['usr_id'];
 $id_group = prompt_group_user($usr_id);
 
 
-if (valider("is_group_manager($usr_id)","SESSION")) {
+if ("is_group_manager($usr_id)") {
 	
 	
 	$task =  prompt_task_group($id_group); 
