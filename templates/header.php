@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html >
 <head>
     <meta charset="utf-8">
     <title>Todo App</title>
     <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Lato" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
+    <script src="js/timeknots_modified.js"></script>
+    <script src="js/d3.v2.min.js"></script>
 </head>
 </html>
 

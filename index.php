@@ -1,4 +1,3 @@
-
 <?php
 /* on a repris pour cette page le code de la page index.php du td TinyMVC */
 
@@ -28,8 +27,10 @@ $view = valider("view");
 if (!$view) $view = "home";
 
 // En fonction de la vue à afficher, on appelle tel ou tel template
-switch($view)
-{
+switch ($view) {
+    case "home" :
+        include("templates/home.php");
+        break;
 
 
     default : // si le template correspondant à l'argument existe, on l'affiche
@@ -41,7 +42,6 @@ switch($view)
 
 // Dans tous les cas, on affiche le pied de page
 include("templates/footer.php");
-
 
 
 ?>

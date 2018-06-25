@@ -34,7 +34,7 @@ function prompt_user_task($id_task){
 
 //Renvoie les taches d'un utilisateur
 function prompt_task_user($usr_id) {
-	$sql="SELECT t.title, t.description, t.deadline, from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
+	$sql="SELECT t.title, t.description, t.deadline from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
 	return parcoursRs(SQLSelect($sql));
 }
 
