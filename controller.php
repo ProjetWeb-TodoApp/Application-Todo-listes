@@ -64,7 +64,7 @@ if ($action = valider("action"))
 		// on pourra attribuer les realisateurs
 		break;
 		
-		case "remove_task":
+		case "delete":
 		break;
 		
 		//si on est bien le chef de pole, on peut dire que la tache est finie
