@@ -13,8 +13,8 @@ include_once("librairies/modele.php");
 include_once("librairies/maLibUtils.php");
 include_once("librairies/maLibForms.php");
 
-if (!valider($_SESSION["usr_ud"])){
-	header("Location:../index.php?view=home");
+if (!isset($_SESSION["usr_id"])){
+	header("Location:index.php?view=login");
     die("");
 }
 

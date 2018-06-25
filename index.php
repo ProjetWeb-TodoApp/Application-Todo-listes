@@ -25,8 +25,7 @@ $view = valider("view");
 
 // S'il est vide, on charge la vue accueil par défaut
 if (!$view) $view = "home";
-// login s'il n'est pas connecté
-if (!valider($_SESSION["usr_id"])) $view="login";
+
 
 
 
