@@ -5,16 +5,20 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
     header("Location:../index.php?view=home");
     die("");
 }
-if (!valider($_SESSION["usr_ud"])){
-	header("Location:../index.php?view=home");
-    die("");
-}
+
 	
 
 
 include_once("librairies/modele.php");
 include_once("librairies/maLibUtils.php");
 include_once("librairies/maLibForms.php");
+
+if (!valider($_SESSION["usr_ud"])){
+	header("Location:../index.php?view=home");
+    die("");
+}
+
+
 //on va chercher les prochaines tasks pour l'user connecté
 $tasks = prompt_task_user($_SESSION["usr_id"]);
 ?>
