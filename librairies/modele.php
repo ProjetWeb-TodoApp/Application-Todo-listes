@@ -39,14 +39,6 @@ function prompt_task_user($usr_id) {
 }
 
 
-//Renvoie le group d'un utilisateur
-
-function prompt_group_user($usr_id) {
-
-}
-
-
-
 function edit_task($grp,$usr_tab,$label,$chef=null,$description=null,$deadline,$grp_id,$parent=null){
 
 }
@@ -93,17 +85,43 @@ function is_project_manager($id){
     return(SQLGetChamp($sql)==1);
 }
 
+
+
+//Renvoie le group d'un utilisateur
+//Renvoie le groupe d'un utilisateur
+
+        function prompt_group_user($usr_id) {}
+        function prompt_groupe_user($usr_id) {
+            $sql="SELECT groupe.title from belongs join groupe on groupe.id=belongs.id_groupe where belongs.id_user=$usr_id ";
+            SQLSelect($sql);
+
+        }
+
+       
+
 //Renvoie si un user est chef de group
-function is_group_manager($id){
-    
-}
+//Renvoie si un user est chef de groupe
+        function is_group_manager($id){
+
+            if(is_project_manager($id))return True;
+            else{
+                $sql="SELECT groupe.id_group_manager from groupe join belongs on groupe.id=belongs.id_group where belongs.id_user=$id";
+                $grp=parcoursRS(SQLGetChamps($sql));
+                for ($i=0; $i<count($grp);$i++) {if ($id==$grp[$i]) return true;}
+            }
+            return False;
+        }
 
 
 
+        function grp_members($grp_id){
+            $sql="SELECT user.first_name, user.last_name from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
+            return parcoursRS(SQLSelect($sql));
+        }
 
 
 
-function verif_user_BDD(){}
-
-
-function grp_members($user_id){}
+        function prompt_grp(){
+            $sql="SELECT title FROM groupe ";
+            return parcoursRS(SQLSelect($sql));
+        }
