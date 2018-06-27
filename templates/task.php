@@ -22,7 +22,7 @@ include_once("librairies/maLibForms.php");
         <h3> Your tasks </h3>
         <?php
         $tasks= prompt_task_user($_SESSION["usr_id"]);
-        mKTables($tasks);
+        mKTable($tasks);
         ?>
     </div>
 
@@ -34,7 +34,7 @@ include_once("librairies/maLibForms.php");
             echo " <a href='index.php?view=task_creation'>Add a new task</a>";
 }
        $grp_tsk=prompt_task_group($user);
-        mkTables($grp_tsks);
+        mkTable($grp_tsk);
         ?>
 
     </div>
