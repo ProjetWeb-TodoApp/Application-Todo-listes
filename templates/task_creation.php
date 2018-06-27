@@ -20,6 +20,7 @@ if (!isset($_SESSION["usr_id"])){
 if (!is_group_manager($_SESSION["usr_id"])){
 	header("Location:index.php?view=task");
     die("");
+}
 
 // on se place sur le bon fuseau horaire
 date_default_timezone_set('Europe/Paris');
@@ -62,12 +63,10 @@ date_default_timezone_set('Europe/Paris');
 
 
     </script>
-</head>
 
-<body>
-<h1> Create a new task</h1>
-<div>
+<main>
 
+<section class="l-section">
     <form action="controller.php">
         <input type="text" name="tsk_name" value="Task name">
         <!--Chose the deadline-->
@@ -81,12 +80,12 @@ date_default_timezone_set('Europe/Paris');
 
         <p>Choose who will work on this task</p>
         <?php
-        $usr_group=prompt_group_user($_SESSION["usr_id"]);
-        $tab_grp_members = grp_members($usr_group);
+		$grp_id=valider("grp_id");
+        $tab_grp_members = grp_members($grp_id);
          foreach ($tab_grp_members as $member) {
-             echo "<input type='checkbox' name='cb'.$member[id] >";
-             echo "<label for 'cb'.$member[id]>";
-             echo $member['first_name'] . " " . $member['last_name'];
+             echo "<input type='checkbox' name='$member[id]' id='$member[id]'>";
+             echo "<label for $member[id]>";
+             echo "$member[first_name] $member[last_name]";
              echo "</label>";
         }
  
@@ -116,7 +115,5 @@ date_default_timezone_set('Europe/Paris');
         <input type="submit" action="new_task" value="Create task">
     </form>
 
-
-</div>
-</body>
-</html>
+</section>
+</main>

@@ -38,7 +38,7 @@ if ($grp_id = valider('grp_id')) {
         <?php
         $user=$_SESSION["usr_id"];
         if (is_group_manager($user)) {
-            echo " <a href='index.php?view=task_creation'><button>Add a new task</button></a>";
+            echo " <a href='index.php?view=task_creation&grp_id=$grp_id'><button>Add a new task</button></a>";
 		}
 	
         ?>

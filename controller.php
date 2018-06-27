@@ -59,10 +59,6 @@ if ($action = valider("action"))
 		break;
  
  
- 
- 
- 
- 
 		// on pourra attribuer les realisateurs
 		//Entrées: $tsk_title, $tsk_description, $tsk_
 		case "new_task": 
