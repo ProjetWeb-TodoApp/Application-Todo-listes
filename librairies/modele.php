@@ -90,38 +90,44 @@ function is_project_manager($id){
 //Renvoie le group d'un utilisateur
 //Renvoie le groupe d'un utilisateur
 
-        function prompt_group_user($usr_id) {}
-        function prompt_groupe_user($usr_id) {
-            $sql="SELECT groupe.title from belongs join groupe on groupe.id=belongs.id_groupe where belongs.id_user=$usr_id ";
-            SQLSelect($sql);
+function prompt_groupe_user($usr_id) {
+    $sql="SELECT groupe.title from belongs join groupe on groupe.id=belongs.id_groupe where belongs.id_user=$usr_id ";
+    SQLSelect($sql);
+    function prompt_group_user($usr_id) {}
 
-        }
+}
 
        
 
 //Renvoie si un user est chef de group
 //Renvoie si un user est chef de groupe
-        function is_group_manager($id){
 
-            if(is_project_manager($id))return True;
-            else{
-                $sql="SELECT groupe.id_group_manager from groupe join belongs on groupe.id=belongs.id_group where belongs.id_user=$id";
-                $grp=parcoursRS(SQLGetChamps($sql));
-                for ($i=0; $i<count($grp);$i++) {if ($id==$grp[$i]) return true;}
-            }
-            return False;
-        }
+function is_group_manager($id){
+
+    if(is_project_manager($id))return True;
+    else{
+        $sql="SELECT groupe.id_group_manager from groupe join belongs on groupe.id=belongs.id_group where belongs.id_user=$id";
+        $grp=parcoursRS(SQLGetChamps($sql));
+        for ($i=0; $i<count($grp);$i++) {if ($id==$grp[$i]) return true;}
+    }
+    return False;
+}
 
 
-
-        function grp_members($grp_id){
+function grp_members($grp_id){
             $sql="SELECT user.first_name, user.last_name from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
             return parcoursRS(SQLSelect($sql));
         }
 
 
+function prompt_grp(){
+    $sql="SELECT title FROM groupe ";
+    return parcoursRS(SQLSelect($sql));
+}
 
-        function prompt_grp(){
-            $sql="SELECT title FROM groupe ";
-            return parcoursRS(SQLSelect($sql));
-        }
+
+function prompt_task($tsk_id){
+    $sql="SELECT * FROM task WHERE id=$tsk_id";
+    $tab= parcoursRs(SQLSelect($sql));
+    $tab["members"]=prompt_user_task($tsk_id);
+}
