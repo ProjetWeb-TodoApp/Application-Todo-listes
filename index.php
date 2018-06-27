@@ -13,6 +13,7 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 
 
 include_once "librairies/maLibUtils.php";
+include_once "librairies/modele.php";
 
 // Dans tous les cas, on affiche l'entete,
 // qui contient les balises de structure de la page, le logo, etc.

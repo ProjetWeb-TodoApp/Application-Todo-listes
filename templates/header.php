@@ -12,13 +12,16 @@
 
 <body class="l-body">
 <header class="l-header">
-    <h1 class="app_title">Todo App</h1>
+    <h1 class="app_title"><a href="index.php?view=home">Todo App</a></h1>
     <nav class="menu">
         <ul>
             <li class="menu_item"><a href="index.php?view=home">Home</a></li>
             <?php
             //Code à insérer pour afficher la liste des pages disponibles
-            // echo "<li class=\"menu_item\"><a href=\"index.php?view=login\">Log in</a></li>";
+            $groups=prompt_grp();
+            foreach ($groups as $grp){
+                echo "<li class=\"menu_item\"><a href=\"index.php?view=group&grp_name='$grp[id]'\">$grp[title]</a></li>";
+            }
 
             ?>
 

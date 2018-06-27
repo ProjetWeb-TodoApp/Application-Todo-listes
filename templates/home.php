@@ -51,7 +51,9 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
 <script type="text/javascript" defer>
     let tasks =<?php echo json_encode($tasks)?>;
     console.log(tasks);
-    let timeline_tasks = [];
+    let today = new Date();
+    today= today.toISOString().slice(0,10).replace(/-/g,"/");
+    let timeline_tasks = [{'date': today, 'name': 'Today', 'description': "",'background':'var(--accent-color)'}];
     for (let task of tasks) {
         console.log(task);
         timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})

@@ -122,6 +122,6 @@ function is_project_manager($id){
 
 
         function prompt_grp(){
-            $sql="SELECT title FROM groupe ";
+            $sql="SELECT title, id FROM groupe ";
             return parcoursRS(SQLSelect($sql));
         }
