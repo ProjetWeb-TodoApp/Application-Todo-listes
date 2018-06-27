@@ -70,6 +70,10 @@ button {
     margin: 10px;
 }
 
+button:hover {
+    background-color: var(--primary-text-color);
+}
+
 /*---------------------------------------------*\
                      LAYOUT
 \*---------------------------------------------*/
@@ -89,6 +93,7 @@ button {
     padding: 0.5em 2em;
     align-items: baseline;
     justify-content: space-between;
+    min-height: 70px;
 }
 
 .l-footer {
@@ -107,6 +112,8 @@ button {
     justify-content: center;
     align-items: stretch;
     margin: 2%;
+    /*    overflow-y: scroll;
+        overflow-x: hidden;*/
 }
 
 .l-section {
@@ -116,6 +123,7 @@ button {
     flex-grow: 1;
     min-width: 25em;
     min-height: 510px;
+    /*overflow-y: scroll;*/
 }
 
 .l-section-small {
@@ -133,6 +141,7 @@ button {
         align-items: stretch;
         background-color: var(--alert-color);
         border-radius: 10px;
+        /*overflow-y: scroll;*/
     }
 
     .l-section-small {
@@ -144,6 +153,7 @@ button {
         flex: 1;
         width: unset;
         min-width: unset;
+        /*/overflow: unset;*/
     }
 }
 
@@ -185,7 +195,7 @@ button {
 }
 
 .menu_item {
-    padding: 0 0.5em;
+    padding: 0em 0.5em;
     font-size: 1.5em;
     font-family: var(--title-font);
     font-weight: bolder;
@@ -196,8 +206,11 @@ button {
     text-decoration: none;
 }
 
-/* =================== Main ==================*/
-/* ------------------ Log in -----------------*/
+.menu_item :hover {
+    text-decoration: underline;
+}
+    /* =================== Main ==================*/
+    /* ------------------ Log in -----------------*/
 .login_form {
     box-sizing: border-box;
     background-color: var(--default-primary-color);
@@ -255,6 +268,7 @@ button {
     border-radius: 5px;
     width: 17em;
     padding: 0.5em;
+
 }
 
 .task-listed {
