@@ -126,7 +126,8 @@ function prompt_grp(){
 
 
 function prompt_task($tsk_id){
-    $sql="SELECT * FROM task WHERE id=$tsk_id";
-    $tab= parcoursRs(SQLSelect($sql));
+    $sql="SELECT * FROM task WHERE id='$tsk_id'";
+    $tab= parcoursRs(SQLSelect($sql))[0];
     $tab["members"]=prompt_user_task($tsk_id);
+    return $tab;
 }

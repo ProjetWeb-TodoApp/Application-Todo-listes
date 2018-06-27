@@ -18,43 +18,39 @@ date_default_timezone_set('Europe/Paris');
 <html>
 <head>
     <title>Edit a task</title>
+
+
+
 </head>
 
+<body>
 <?php
 $tsk_id=getValue("tsk_id");
+
 // si on n'a pas d'id de conversation dans l'url on renvoie vers la vue task
 if(!$tsk_id ) {
     header("Location:index.php?view=task");
     die("La tâche n'existe pas ");
 }
-$usr=$_SESSION["usr_id"];
+$usr_id=$_SESSION["usr_id"];
+// on récupère toutes les données de la table task pour l'id tsk_id
+$tsk_data=prompt_task($tsk_id);
+$grp_id=$tsk_data["id_group"];
 
-$tsk_data=get_task($tsk_id);
-
-echo "<h1>".$tsk_data["title"]."</h1>";
+echo "<h1>".$tsk_data['title']."</h1>";
 
 ?>
-
-<div>Delete this task </div>
-
 <?php
+ echo "<form action='controller.php' method='GET'>";
+// on récupère l'id de la conversation à éditer dans le form via un champ caché
 
-$usr_id = $_SESSION['usr_id'];
-$id_group = prompt_group_user($usr_id);
+echo "<input  value = $tsk_id type='hidden'/>";
+echo "<input type = 'submit' name='action' value='Delete' />";
 
+echo "</form>";
 
-if ("is_group_manager($usr_id)") {
-	
-	
-	$task =  prompt_task_group($id_group); 
+ ?>
 
-	mkForm("controller.php");
-	mkSelect("id_task",$task,"id","theme", valider("id_task"));
-	mkInput("submit","action","Delete");
-	endForm();
-}
-
-?>
 
 
 
@@ -62,6 +58,11 @@ if ("is_group_manager($usr_id)") {
 
 </body>
 </html>
+
+
+
+
+
 
 
 

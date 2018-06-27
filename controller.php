@@ -74,6 +74,10 @@ if ($action = valider("action"))
 		break;
 		
 		case "delete":
+			echo"<script> console.log('$tsk_id'); </script>";
+			if ($tsk_id=valider("tsk_id")) {
+                delete_task($tsk_id);
+            }
 		break;
 		
 		//si on est bien le chef de pole, on peut dire que la tache est finie
