@@ -107,7 +107,7 @@ function is_group_manager($id){
     if(is_project_manager($id))return True;
     else{
         $sql="SELECT groupe.id_group_manager from groupe join belongs on groupe.id=belongs.id_group where belongs.id_user=$id";
-        $grp=parcoursRS(SQLGetChamp($sql));
+        $grp=SQLGetChamp($sql);
         for ($i=0; $i<count($grp);$i++) {if ($id==$grp[$i]) return true;}
     }
     return False;
