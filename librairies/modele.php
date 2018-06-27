@@ -90,10 +90,9 @@ function is_project_manager($id){
 //Renvoie le group d'un utilisateur
 //Renvoie le groupe d'un utilisateur
 
-function prompt_groupe_user($usr_id) {
+function prompt_group_user($usr_id) {
     $sql="SELECT groupe.title from belongs join groupe on groupe.id=belongs.id_groupe where belongs.id_user=$usr_id ";
     SQLSelect($sql);
-    function prompt_group_user($usr_id) {}
 
 }
 
