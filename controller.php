@@ -65,8 +65,12 @@ if ($action = valider("action"))
  
 		// on pourra attribuer les realisateurs
 		//Entrées: $tsk_title, $tsk_description, $tsk_
-		case "new_task":
+		case "new_task": 
+		if($tsk_title=valider("tsk_name")){
+			if($tsk_deadline=valider("tsk_deadline")){
 				new_task();
+			}
+			}
 		break;
 		
 		case "edit_task":

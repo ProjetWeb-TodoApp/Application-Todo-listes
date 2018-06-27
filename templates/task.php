@@ -9,34 +9,71 @@ if (basename($_SERVER["PHP_SELF"]) == "task.php") {
 include_once("librairies/modele.php");
 include_once("librairies/maLibUtils.php");
 include_once("librairies/maLibForms.php");
+
+//ON GARDE LA CONFIDENTIALITE, ON NE PEUT VENIR QU'EN ETANT CONNECTE
+if (!isset($_SESSION["usr_id"])){
+	header("Location:index.php?view=login");
+    die("");
+}
+
+
 ?>
-
-<html>
-<head>
-    <title>To-do list</title>
-</head>
-
-<body>
-    <h1> To-do list</h1>
-    <div id="usr_tasks">
+<main class="l-main">
+   
+    <section class="l-section">
         <h3> Your tasks </h3>
         <?php
         $tasks= prompt_task_user($_SESSION["usr_id"]);
-        mKTable($tasks);
         ?>
-    </div>
+		<div class="usr_next_tasks">
+            <?php
+			//Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
+			// Le lien n'appparait que si l'utilisateur est en droit de la modifier
+			$user=$_SESSION["usr_id"];
+            foreach ($tasks as $task) {
+				
+				
+				if (is_group_manager($user)) {echo "<a href=index.php?view=task_edition&tsk_id='$task[id]'>";}
+                echo "<div class='task task-listed'>";
+                echo "<h3>$task[title]</h3>";
+                echo "<small>$task[deadline]</small>";
+                echo "<p>$task[description]</p>";
+                echo "</div>";
+				if (is_group_manager($user)) {echo "</a>";}
+            }
+            ?>
 
-    <div id = "grp_tasks">
+        </div>
+		
+    </section>
+
+    <section class="l-section">
         <h3> Team's tasks </h3>
         <?php
         $user=$_SESSION["usr_id"];
-        if (canEdit($user)) {
-            echo " <a href='index.php?view=task_creation'>Add a new task</a>";
-}
-       $grp_tsk=prompt_task_group($user);
-        mkTable($grp_tsk);
+        if (is_group_manager($user)) {
+            echo " <a href='index.php?view=task_creation'><button>Add a new task</button></a>";
+		}
+		$grp_tsk=prompt_task_group($user);
         ?>
-
-    </div>
-</body>
-</html>
+		<div class="grp_next_tasks">
+            <?php
+			//Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
+			// Le lien n'appparait que si l'utilisateur est en droit de la modifier
+			$user=$_SESSION["usr_id"];
+            foreach ($grp_tsk as $task) {
+				
+				if (is_group_manager($user)) {echo "<a href=index.php?view=task_edition&tsk_id='$task[id]'>";}
+                echo "<div class='task task-listed'>";
+                echo "<h3>$task[title]</h3>";
+                echo "<small>$task[deadline]</small>";
+                echo "<p>$task[description]</p>";
+                echo "</div>";
+				if (is_group_manager($user)) {echo "</a>";}
+            }
+            ?>
+        </div>
+		
+		
+    </section>
+</main>

@@ -10,6 +10,17 @@ include_once("librairies/modele.php");
 include_once("librairies/maLibUtils.php");
 include_once("librairies/maLibForms.php");
 
+//ON GARDE LA CONFIDENTIALITE, ON NE PEUT VENIR QU'EN ETANT CONNECTE
+if (!isset($_SESSION["usr_id"])){
+	header("Location:index.php?view=login");
+    die("");
+}
+
+// Si l'utilisatur n'a pas le droit d'être ici, on le renvoi vers task
+if (!is_group_manager($_SESSION["usr_id"])){
+	header("Location:index.php?view=task");
+    die("");
+
 // on se place sur le bon fuseau horaire
 date_default_timezone_set('Europe/Paris');
 ?>
@@ -62,7 +73,7 @@ date_default_timezone_set('Europe/Paris');
         <!--Chose the deadline-->
         <legend>Deadline</legend>
         <!-- le type date est un champ HTML 5, qui peut contenir une date au format RFC 3339 -->
-        <input type="date" name="Deadline">
+        <input type="date" name="tsk_deadline">
         </select>
 
         <br/>
@@ -70,15 +81,15 @@ date_default_timezone_set('Europe/Paris');
 
         <p>Choose who will work on this task</p>
         <?php
-        /*$usr_group=prompt_group_user($_SESSION["usr_id"]);
+        $usr_group=prompt_group_user($_SESSION["usr_id"]);
         $tab_grp_members = grp_members($usr_group);
          foreach ($tab_grp_members as $member) {
-             echo "<input type='checkbox' id='cb'.$member >";
-             echo "<label for 'cb'.$member>";
-             echo $member['name'] . " " . $member['lastname'];
+             echo "<input type='checkbox' name='cb'.$member[id] >";
+             echo "<label for 'cb'.$member[id]>";
+             echo $member['first_name'] . " " . $member['last_name'];
              echo "</label>";
         }
- */
+ 
         ?>
         <br/>
         <p>Describe your task :</p>
