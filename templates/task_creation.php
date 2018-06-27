@@ -34,6 +34,7 @@ date_default_timezone_set('Europe/Paris');
 
     <!-- On récupère la librairie jquery -->
     <script>
+        // ce script se base sur une des versions des paragraphes éditables développée pendant le td TinyCMS
         // structure par défaut des nouveaux paragraphes
         var jP = $("<p>New Checklist Item</p>");
 
@@ -73,7 +74,7 @@ date_default_timezone_set('Europe/Paris');
 		echo "<input type='hidden' name='grp_id' value='$grp_id'>"
         ?>
 		<input type="text" name="tsk_name" value="Task name">
-        <!--Chose the deadline-->
+        <!--Choisir the deadline-->
         <legend>Deadline</legend>
         <!-- le type date est un champ HTML 5, qui peut contenir une date au format RFC 3339 -->
         <input type="date" name="tsk_deadline">

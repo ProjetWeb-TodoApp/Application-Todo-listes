@@ -28,7 +28,7 @@ function prompt_task_group($id_group){
 }
 //renvoit les realisatuers d'une tache
 function prompt_user_task($id_task){
-    $sql="SELECT user.first_name, user.last_name from user join realize  on  realize.id_user=user.id WHERE realize.id_task=$id_task";
+    $sql="SELECT user.first_name, user.last_name, user.id from user join realize on realize.id_user=user.id WHERE realize.id_task='$id_task'";
     return parcoursRs(SQLSelect($sql));
 }
 
@@ -132,8 +132,20 @@ function prompt_task($tsk_id){
     return $tab;
 }
 
-function validate_task($tsk_id, $date) { // cette fonction prend en argument la date de réalisation de la tâche  et son id et modifie la base de données en conséquence
-    $sql="update task set completion_date='$date' where id='$tsk_id'";
+// cette fonction prend en argument la date de réalisation de la tâche  et son id et modifie la base de données en conséquence
+function validate_task($tsk_id, $date)
+{
+    $sql = "update task set completion_date='$date' where id='$tsk_id'";
     SQLUpdate($sql);
+}
+
+// cette fonction prend en argument l'id d'un user et d'une tâche et renvoie un booléen : true si l'utilisateur est assigné à la tâche, false sinon
+
+function is_task_member ($tsk_id, $usr_id){
+    $tab_members=prompt_user_task($tsk_id); // on récupère la liste des réalisateurs de la tâche
+    foreach($tab_members as $member) {
+        if ($member["id"]== $usr_id) return true;
+    }
+    return false;
 
 }
