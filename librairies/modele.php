@@ -28,7 +28,7 @@ function prompt_task_group($id_group){
 }
 //renvoit les realisatuers d'une tache
 function prompt_user_task($id_task){
-    $sql="SELECT user.name, user.last_name from user join realize  on  realize.id_user=user.id WHERE realize.id_task=$id_task";
+    $sql="SELECT user.first_name, user.last_name from user join realize  on  realize.id_user=user.id WHERE realize.id_task=$id_task";
     return parcoursRs(SQLSelect($sql));
 }
 
