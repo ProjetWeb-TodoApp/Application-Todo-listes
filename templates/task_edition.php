@@ -41,10 +41,13 @@ echo "<h1>".$tsk_data['title']."</h1>";
 <?php
  echo "<form action='controller.php' method='GET'>";
 // on récupère l'id de la conversation à éditer dans le form via un champ caché
-
 echo "<input  name='tsk_id' value = $tsk_id type='hidden' />";
+//on récupère de la même manière la date de soumission du formulaire
+echo "<input  name='date' value = date(\"Y-m-d H:i:s\") type='hidden' />";
+echo "<p> Supprimer la tâche </p>";
 echo "<input type = 'submit' name='action' value='delete' />";
-
+echo "<p> Valider la tâche </p>";
+echo "<br>"."<input type = 'submit' name='action' value='Validate' />";
 echo "</form>";
 
  ?>
