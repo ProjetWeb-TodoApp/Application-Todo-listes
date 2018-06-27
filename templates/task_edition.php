@@ -19,8 +19,6 @@ date_default_timezone_set('Europe/Paris');
 <head>
     <title>Edit a task</title>
 
-
-
 </head>
 
 <body>
@@ -44,17 +42,12 @@ echo "<h1>".$tsk_data['title']."</h1>";
  echo "<form action='controller.php' method='GET'>";
 // on récupère l'id de la conversation à éditer dans le form via un champ caché
 
-echo "<input  value = $tsk_id type='hidden'/>";
-echo "<input type = 'submit' name='action' value='Delete' />";
+echo "<input  name='tsk_id' value = $tsk_id type='hidden' />";
+echo "<input type = 'submit' name='action' value='delete' />";
 
 echo "</form>";
 
  ?>
-
-
-
-
-
 
 </body>
 </html>
