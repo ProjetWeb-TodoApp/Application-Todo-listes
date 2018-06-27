@@ -114,7 +114,7 @@ function is_group_manager($id){
 
 
 function grp_members($grp_id){
-    $sql="SELECT user.first_name, user.last_name from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
+    $sql="SELECT user.first_name, user.last_name,user.id from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
     return parcoursRS(SQLSelect($sql));
 }
 
