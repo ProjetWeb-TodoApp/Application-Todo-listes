@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Paris');
                     var clone = jP.clone();
                     if (contenu) clone.html(contenu);
                     clone.prepend('<input type="checkbox"/>');
-                    $("#checklist").prepend( clone);
+                    $("#checklist").append( clone);
                 });
             // insertion btn "+" dans la page
             $("#checklist")
