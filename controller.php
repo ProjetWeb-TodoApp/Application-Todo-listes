@@ -83,14 +83,18 @@ if ($action = valider("action"))
 		break;
 		
 		case "delete":
-			echo"<script> console.log('$tsk_id'); </script>";
 			if ($tsk_id=valider("tsk_id")) {
                 delete_task($tsk_id);
             }
 		break;
 		
 		//si on est bien le chef de pole, on peut dire que la tache est finie
-		case "done_task":
+		case "validate":
+            if ($tsk_id=valider("tsk_id")) {
+            	if($date=valider("date")) {
+            		validate_task($tsk_id, $date);
+				}
+			}
 		break;
 	
 		case "":

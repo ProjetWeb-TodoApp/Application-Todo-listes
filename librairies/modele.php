@@ -131,3 +131,9 @@ function prompt_task($tsk_id){
     $tab["members"]=prompt_user_task($tsk_id);
     return $tab;
 }
+
+function validate_task($tsk_id, $date) { // cette fonction prend en argument la date de réalisation de la tâche  et son id et modifie la base de données en conséquence
+    $sql="update task set completion_date='$date' where id='$tsk_id'";
+    SQLUpdate($sql);
+
+}

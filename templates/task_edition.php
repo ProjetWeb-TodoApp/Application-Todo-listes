@@ -34,6 +34,7 @@ $usr_id=$_SESSION["usr_id"];
 // on récupère toutes les données de la table task pour l'id tsk_id
 $tsk_data=prompt_task($tsk_id)[0];
 $grp_id=$tsk_data["id_group"];
+$current_date=date("Y-m-d");
 
 echo "<h1>".$tsk_data['title']."</h1>";
 
@@ -42,12 +43,14 @@ echo "<h1>".$tsk_data['title']."</h1>";
  echo "<form action='controller.php' method='GET'>";
 // on récupère l'id de la conversation à éditer dans le form via un champ caché
 echo "<input  name='tsk_id' value = $tsk_id type='hidden' />";
-//on récupère de la même manière la date de soumission du formulaire
-echo "<input  name='date' value = date(\"Y-m-d H:i:s\") type='hidden' />";
+//on récupère de la même manière la date de soumission du formulaire, on aura ainsi la date de réalisation de la tâche si on la valide
+echo "<input  name='date' value = $current_date type='hidden' />";
 echo "<p> Supprimer la tâche </p>";
 echo "<input type = 'submit' name='action' value='delete' />";
+
+// le bouton valider sert à indiquer si la tâche a été complétée
 echo "<p> Valider la tâche </p>";
-echo "<br>"."<input type = 'submit' name='action' value='Validate' />";
+echo "<br>"."<input type = 'submit' name='action' value='validate' />";
 echo "</form>";
 
  ?>
