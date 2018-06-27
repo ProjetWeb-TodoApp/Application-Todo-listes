@@ -31,7 +31,7 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
         <div class="usr_next_tasks">
             <?php
             foreach ($tasks as $task) {
-                if (deadline_task($task['id'])> date("Y-m-d")){echo "<div class='task task-listed late'>";}
+                if (deadline_task($task['id'])< date("Y-m-d")){echo "<div class='task task-listed late'>";}
                 else{echo "<div class='task task-listed'>";}
 
                     echo "<h3>$task[title]</h3>";
