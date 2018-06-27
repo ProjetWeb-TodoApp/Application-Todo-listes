@@ -68,7 +68,11 @@ date_default_timezone_set('Europe/Paris');
 
 <section class="l-section">
     <form action="controller.php">
-        <input type="text" name="tsk_name" value="Task name">
+		<?php
+		$grp_id=valider("grp_id");
+		echo "<input type='hidden' name='grp_id' value='$grp_id'>"
+        ?>
+		<input type="text" name="tsk_name" value="Task name">
         <!--Chose the deadline-->
         <legend>Deadline</legend>
         <!-- le type date est un champ HTML 5, qui peut contenir une date au format RFC 3339 -->
@@ -92,9 +96,9 @@ date_default_timezone_set('Europe/Paris');
         ?>
         <br/>
         <p>Describe your task :</p>
-        <input type="textarea" id="description">
+        <input type="textarea" name="tsk_description">
         <br/>
-        <p>Does this task need any of the other tasks completed ?</p>
+        <!--<p>Does this task need any of the other tasks completed ?</p>
         <?php
 
         /*      $tab_grp_tasks = prompt_task_group($_SESSION["usr_id"]);

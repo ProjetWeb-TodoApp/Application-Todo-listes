@@ -64,9 +64,18 @@ if ($action = valider("action"))
 		case "new_task": 
 		if($tsk_title=valider("tsk_name")){
 			if($tsk_deadline=valider("tsk_deadline")){
-				new_task();
+				$id_usr_tab=[];
+				for ($i = 1; $i <= 10; $i++) {
+					if (valider("$i")){
+						id_usr_tab.append(valider("$i"));}
+				}
+				if($grp_id=valider("grp_id")){
+					if($tsk_description=valider("tsk_description")){
+						new_task($tsk_title,$tsk_description,$tsk_deadline,null,null,$grp_id,$id_usr_tab);
+					}
+				}
 			}
-			}
+		}
 		break;
 		
 		case "edit_task":
