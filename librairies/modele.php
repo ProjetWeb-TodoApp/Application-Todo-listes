@@ -44,9 +44,9 @@ function edit_task($grp,$usr_tab,$label,$chef=null,$description=null,$deadline,$
 }
 //renvoit la liste des taches qui devraient etre terminees avant la date passée en entrée
 //entrée: date(format:"année-mois-jour")
-function late_task($date){
-    $sql="SELECT * from task where deadline>'$date'";
-    return parcoursRs(SQLSelect($sql));
+function deadline_task($id){
+    $sql="SELECT deadline from task where id=$id";
+    return SQLGetChamp($sql);
 }
 
 function delete_task($id_task){
