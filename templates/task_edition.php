@@ -32,7 +32,7 @@ if(!$tsk_id ) {
 }
 $usr_id=$_SESSION["usr_id"];
 // on récupère toutes les données de la table task pour l'id tsk_id
-$tsk_data=prompt_task($tsk_id);
+$tsk_data=prompt_task($tsk_id)[0];
 $grp_id=$tsk_data["id_group"];
 
 echo "<h1>".$tsk_data['title']."</h1>";
