@@ -18,9 +18,24 @@ date_default_timezone_set('Europe/Paris');
 <html>
 <head>
     <title>Edit a task</title>
-<head>
+</head>
 
-<div>Delete a task </div>
+<?php
+$tsk_id=getValue("tsk_id");
+// si on n'a pas d'id de conversation dans l'url on renvoie vers la vue task
+if(!$tsk_id ) {
+    header("Location:index.php?view=task");
+    die("La tâche n'existe pas ");
+}
+$usr=$_SESSION["usr_id"];
+
+$tsk_data=get_task($tsk_id);
+
+echo "<h1>".$tsk_data["title"]."</h1>";
+
+?>
+
+<div>Delete this task </div>
 
 <?php
 
