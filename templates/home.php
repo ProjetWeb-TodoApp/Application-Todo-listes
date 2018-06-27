@@ -6,15 +6,13 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
     die("");
 }
 
-	
-
 
 include_once("librairies/modele.php");
 include_once("librairies/maLibUtils.php");
 include_once("librairies/maLibForms.php");
 
-if (!isset($_SESSION["usr_id"])){
-	header("Location:index.php?view=login");
+if (!isset($_SESSION["usr_id"])) {
+    header("Location:index.php?view=login");
     die("");
 }
 
@@ -27,7 +25,6 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
     <section class="l-section-small">
         <h2>Timeline</h2>
         <div id="timeline"></div>
-
     </section>
     <section class="l-section">
         <h2>Your Next Tasks</h2>
@@ -41,8 +38,8 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
                 echo "</div>";
             }
             ?>
-<!--            <div class="task task-listed"></div>
-            <div class="task task-listed"></div>-->
+            <!--            <div class="task task-listed"></div>
+                        <div class="task task-listed"></div>-->
         </div>
     </section>
 
@@ -50,13 +47,27 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
 
 <script type="text/javascript" defer>
     let tasks =<?php echo json_encode($tasks)?>;
-    console.log(tasks);
+    //console.log(tasks);
     let today = new Date();
-    today= today.toISOString().slice(0,10).replace(/-/g,"/");
-    let timeline_tasks = [{'date': today, 'name': 'Today', 'description': "",'background':'var(--accent-color)'}];
+    let str_today = today.toISOString().slice(0, 10).replace(/-/g, "/");
+    //console.log(Date.parse(today));
+    let timeline_tasks = [{'date': str_today, 'name': 'Today', 'description': "", 'background': 'var(--accent-color)'}];
     for (let task of tasks) {
-        console.log(task);
-        timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})
+        let date_task = Date.parse(task['deadline']);
+        //console.log(date_task);
+        //console.log(date_task >= Date.parse(today));
+        if (date_task > Date.parse(today)) {
+            //console.log(task);
+            timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})
+        }
+        else {
+            timeline_tasks.push({
+                'name': task['title'],
+                'description': task['description'],
+                'date': task['deadline'],
+                'background': 'var(--alert-color)'
+            })
+        }
     }
     console.log(timeline_tasks);
 
