@@ -45,7 +45,7 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
             }
             ?>
             <!--            <div class="task task-listed"></div>
-                        <div class="task task-listed"></div>-->
+                        <div class="task task-listed"></div>
                         <div class="task task-listed"></div>-->
         </div>
     </section>
