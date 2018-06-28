@@ -15,7 +15,7 @@ function new_task($title,$description=null,$deadline,$id_group,$id_usr_tab){
     echo "$id_task";
 	for ($i=0;$i<count($id_usr_tab);$i++){
 		echo "$id_usr_tab[$i]";
-        $inser="INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],'$id_task')";
+        $inser="INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],$id_task)";
         SQLInsert($inser);
     }
 
@@ -43,9 +43,29 @@ function prompt_task_user($usr_id) {
 }
 
 
-function edit_task($grp,$usr_tab,$label,$chef=null,$description=null,$deadline,$grp_id,$parent=null){
+function edit_task($id_task, $title,$description,$deadline,$id_group,$id_usr_tab){
+    $sql="UPDATE task SET title='$title', description= '$description',deadline='$deadline',id_group=$id_group WHERE id=$id_task";
+
+    SQLUpdate($sql);
+
+    $del="DELETE FROM realize where id_task=$id_task";
+    SQLDelete($del);
+    for ($i=0;$i<count($id_usr_tab);$i++){
+
+        $inser="INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],$id_task)";
+        SQLInsert($inser);
+    }
+}
+
+
+
+
+function dont_realize_tsk($id_usr,$id_tsk){
+    $sql="SELECT * FROM realize WHERE id_user='$id_usr' AND id_task='$id_tsk'";
+    return (SQLGetChamp($sql)==False);
 
 }
+
 //renvoit la liste des taches qui devraient etre terminees avant la date passée en entrée
 //entrée: date(format:"année-mois-jour")
 function deadline_task($id){
@@ -70,9 +90,6 @@ function prompt_checklist_task($id_task){
 function new_checklist($tsk_id,$etat,$label){
 
 }
-
-
-
 
 
 

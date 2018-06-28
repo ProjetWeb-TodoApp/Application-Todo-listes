@@ -79,7 +79,10 @@ if ($action = valider("action"))
 		break;
 		
 		case "edit_task":
-		
+            $urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
+            // On redirige vers la page index avec les bons arguments
+
+            header("Location:" . $urlBase . '?view=home&msg=bite');
 		if ($tsk_id=valider("tsk_id")){
 			if($tsk_title=valider("tsk_name")){
 				if($tsk_deadline=valider("tsk_deadline")){
@@ -91,7 +94,7 @@ if ($action = valider("action"))
 					}
 					
 					if($tsk_description=valider("tsk_description")){
-						edit_task($tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
+						edit_task($tsk_id,$tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
 					}
 					
 				}
