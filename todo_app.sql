@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  Dim 24 juin 2018 à 19:26
--- Version du serveur :  5.7.17
--- Version de PHP :  5.6.30
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  jeu. 28 juin 2018 à 13:43
+-- Version du serveur :  5.7.21
+-- Version de PHP :  5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,9 +28,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `belongs`
 --
 
-CREATE TABLE `belongs` (
+DROP TABLE IF EXISTS `belongs`;
+CREATE TABLE IF NOT EXISTS `belongs` (
   `id_user` int(24) NOT NULL,
-  `id_group` int(24) NOT NULL
+  `id_group` int(24) NOT NULL,
+  UNIQUE KEY `couple_user_group` (`id_user`,`id_group`),
+  KEY `belongs_group` (`id_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -65,12 +68,15 @@ INSERT INTO `belongs` (`id_user`, `id_group`) VALUES
 -- Structure de la table `checklist`
 --
 
-CREATE TABLE `checklist` (
-  `id` int(24) NOT NULL,
+DROP TABLE IF EXISTS `checklist`;
+CREATE TABLE IF NOT EXISTS `checklist` (
+  `id` int(24) NOT NULL AUTO_INCREMENT,
   `id_task` int(24) NOT NULL,
   `state` tinyint(1) NOT NULL,
-  `title` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `title` varchar(50) NOT NULL,
+  UNIQUE KEY `couple_task_user` (`id`,`id_task`),
+  KEY `id_task` (`id_task`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `checklist`
@@ -88,20 +94,22 @@ INSERT INTO `checklist` (`id`, `id_task`, `state`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Structure de la table `groupe`
 --
 
-CREATE TABLE `group` (
-  `id` int(24) NOT NULL,
+DROP TABLE IF EXISTS `groupe`;
+CREATE TABLE IF NOT EXISTS `groupe` (
+  `id` int(24) NOT NULL AUTO_INCREMENT,
   `id_group_manager` int(24) NOT NULL,
-  `title` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `title` varchar(50) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `group`
+-- Déchargement des données de la table `groupe`
 --
 
-INSERT INTO `group` (`id`, `id_group_manager`, `title`) VALUES
+INSERT INTO `groupe` (`id`, `id_group_manager`, `title`) VALUES
 (1, 2, 'Pôle mécanique'),
 (2, 3, 'Pôle électrique'),
 (3, 4, 'Pôle financier'),
@@ -113,9 +121,12 @@ INSERT INTO `group` (`id`, `id_group_manager`, `title`) VALUES
 -- Structure de la table `realize`
 --
 
-CREATE TABLE `realize` (
+DROP TABLE IF EXISTS `realize`;
+CREATE TABLE IF NOT EXISTS `realize` (
   `id_user` int(24) NOT NULL,
-  `id_task` int(24) NOT NULL
+  `id_task` int(24) NOT NULL,
+  UNIQUE KEY `couple_user_task` (`id_user`,`id_task`),
+  KEY `realize_task` (`id_task`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -151,15 +162,17 @@ INSERT INTO `realize` (`id_user`, `id_task`) VALUES
 -- Structure de la table `task`
 --
 
-CREATE TABLE `task` (
-  `id` int(24) NOT NULL,
+DROP TABLE IF EXISTS `task`;
+CREATE TABLE IF NOT EXISTS `task` (
+  `id` int(24) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `description` varchar(200) NOT NULL,
   `deadline` date NOT NULL,
   `completion_date` date DEFAULT NULL,
   `parent_task` int(24) DEFAULT NULL,
-  `id_group` int(24) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+  `id_group` int(24) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Déchargement des données de la table `task`
@@ -178,15 +191,17 @@ INSERT INTO `task` (`id`, `title`, `description`, `deadline`, `completion_date`,
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(24) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(24) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `login` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `project_manager` tinyint(1) NOT NULL,
-  `mail` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `mail` varchar(100) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
@@ -215,73 +230,6 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `login`, `password`, `proje
 (20, 'Maximilien', 'Grattepanche', 'mgrattepanche', 'maximilienmaximilien', 0, 'maximilien.grattepanche@centrale.centralelille.fr');
 
 --
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `belongs`
---
-ALTER TABLE `belongs`
-  ADD UNIQUE KEY `couple_user_group` (`id_user`,`id_group`),
-  ADD KEY `belongs_group` (`id_group`);
-
---
--- Index pour la table `checklist`
---
-ALTER TABLE `checklist`
-  ADD UNIQUE KEY `couple_task_user` (`id`,`id_task`),
-  ADD KEY `id_task` (`id_task`);
-
---
--- Index pour la table `group`
---
-ALTER TABLE `group`
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Index pour la table `realize`
---
-ALTER TABLE `realize`
-  ADD UNIQUE KEY `couple_user_task` (`id_user`,`id_task`),
-  ADD KEY `realize_task` (`id_task`);
-
---
--- Index pour la table `task`
---
-ALTER TABLE `task`
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `checklist`
---
-ALTER TABLE `checklist`
-  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT pour la table `group`
---
-ALTER TABLE `group`
-  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT pour la table `task`
---
-ALTER TABLE `task`
-  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
 -- Contraintes pour les tables déchargées
 --
 
@@ -289,7 +237,7 @@ ALTER TABLE `user`
 -- Contraintes pour la table `belongs`
 --
 ALTER TABLE `belongs`
-  ADD CONSTRAINT `belongs_group` FOREIGN KEY (`id_group`) REFERENCES `group` (`id`),
+  ADD CONSTRAINT `belongs_group` FOREIGN KEY (`id_group`) REFERENCES `groupe` (`id`),
   ADD CONSTRAINT `belongs_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
@@ -302,7 +250,7 @@ ALTER TABLE `checklist`
 -- Contraintes pour la table `realize`
 --
 ALTER TABLE `realize`
-  ADD CONSTRAINT `realize_task` FOREIGN KEY (`id_task`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `realize_task` FOREIGN KEY (`id_task`) REFERENCES `task` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `realize_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 COMMIT;
 
