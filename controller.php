@@ -85,29 +85,34 @@ if ($action = valider("action")) {
         case "edit_task":
 
             //On valide toutes les valeurs qui viennent par le GET
-            if($tsk_id=valider('tsk_id')) {
-                
-                    if ($tsk_deadline = valider("tsk_deadline")) {
-                        $id_usr_tab = array();
-                        //Cette boucle parcours les entiers de 1 à 100, et verifie
-                        //si les variables ($i) sont définies.
-                        //Ce sont les checkbox des membres du group qui sont nommées par des entiers,
-                        //et on suppose qu'il y aura moins de 100 id dans le groupe projet total
-                        for ($i = 1; $i <= 100; $i++) {
-                            if (valider("$i")) {
-                                array_push($id_usr_tab, $i);
-                            }
-                        }
-                        if ($grp_id = valider("grp_id")) {
-                            if ($tsk_description = valider("tsk_description")) {
-                                //tout est vérifié, on peut appeler la fonction de création dans modele.
-                                edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
-                                edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
-                            }
-                        }
+            if(($tsk_id=valider('tsk_id'))&&($grp_id = valider("grp_id"))&&($tsk_description = valider("tsk_description"))) {
+                $id_usr_tab = array();
+                //Cette boucle parcours les entiers de 1 à 100, et verifie
+                //si les variables ($i) sont définies.
+                //Ce sont les checkbox des membres du group qui sont nommées par des entiers,
+                //et on suppose qu'il y aura moins de 100 id dans le groupe projet total  
+                for ($i = 1; $i <= 100; $i++) {
+                    if (valider("$i")) {
+                        array_push($id_usr_tab, $i);      
                     }
-                
+                }
+                if ($tsk_deadline = valider("tsk_deadline")) {
+                    //tout est vérifié, on peut appeler la fonction de création dans modele.
+                    edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                    edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                }
+				else{
+					$tsk_deadline=deadline_task($tsk_id);
+					edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                    edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+				}
+				
             }
+			else{
+				 $qs = "?view=task_edition&tsk_id=$tsk_id&msg=" . urlencode("Please enter description");
+                }   
+                
+            
             break;
 
         //Permet de supprimer une tache.
