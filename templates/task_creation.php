@@ -84,7 +84,7 @@ date_default_timezone_set('Europe/Paris');
 
 
         <p>Choose who will work on this task</p>
-		<!-- On crée des checkbox pour selectionner les membres du pôle à charger de la réalisation
+		<!-- On crée des checkbox pour selectionner les membres du pôle à charger de la réalisation-->
         <?php
 		$grp_id=valider("grp_id");
 		//On crée le tableau de membres du pôle qu'on va parcourir.
@@ -101,17 +101,10 @@ date_default_timezone_set('Europe/Paris');
         <p>Describe your task :</p>
         <input type="textarea" name="tsk_description">
         <br/>
-        <!--<p>Does this task need any of the other tasks completed ?</p>
-        <?php
 
-        /*      $tab_grp_tasks = prompt_task_group($_SESSION["usr_id"]);
-         foreach ($tab_grp_tasks as $task) {
-                  echo "<input type='checkbox' id='cb'.$task >";
-                  echo "<label for 'cb'.$task>";
-                  echo $task['title'];
-                  echo "</label>";
-             }
-           */ ?>
+
+
+        <!--On n'a pas eu le temps durant ce mini-projet de gérer les dépendances de tâches -->
         <br/>
         <p>What are the steps to complete this task ?</p>
         <!-- l'édition des items de checklist va se faire en ajax sur la base du tp TinyCMS -->

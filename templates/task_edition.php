@@ -76,11 +76,17 @@ echo "<h1>" . $tsk_data['title'] . "</h1>";
 
 ?>
 <?php
+
 echo "<form action='controller.php' method='GET'>";
+
 // on récupère l'id de la conversation à éditer dans le form via un champ caché
 echo "<input  name='tsk_id' value = $tsk_id type='hidden' />";
 //on récupère de la même manière la date de soumission du formulaire, on aura ainsi la date de réalisation de la tâche si on la valide
 echo "<input  name='date' value = $current_date type='hidden' />";
+// on récupère également l'id du groupe concerné par la tâche
+echo "<input  name='grp_id' value = $grp_id type='hidden' />";
+
+
 echo "<p> Supprimer la tâche </p>";
 echo "<button type = 'submit' name='action' value='delete' />Delete</button>";
 
@@ -104,7 +110,7 @@ foreach ($tab_grp_members as $member) {
     else
         echo "<input type='checkbox' name='$member[id]' id='$member[id]' >";
     echo "<label for $member[id]>";
-    echo "$member[first_name] $member[last_name]";
+    echo " $member[first_name] $member[last_name]";
     echo "</label>";
 }
 
