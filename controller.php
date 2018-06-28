@@ -102,6 +102,7 @@ if ($action = valider("action")) {
                             if ($tsk_description = valider("tsk_description")) {
                                 //tout est vérifié, on peut appeler la fonction de création dans modele.
                                 edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                                edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
                             }
                         }
                     }
@@ -122,6 +123,7 @@ if ($action = valider("action")) {
             if ($tsk_id = valider("tsk_id")) {
                 if ($date = valider("date")) {
                     validate_task($tsk_id, $date);
+                    validate_task((int)$tsk_id, $date);
                 }
             }
             break;
