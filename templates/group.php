@@ -64,7 +64,11 @@ if ($grp_id = valider('grp_id')) {
                 //si la tâche est réalisée on affiche OK
                 if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
                 echo "</div>";
+<<<<<<< HEAD
                 if ((is_group_manager($usr_id, $grp_id)) ) {
+=======
+                if (is_group_manager($usr_id, $grp_id)) {
+>>>>>>> Tasks
                     echo "</a>";
                 }
             }

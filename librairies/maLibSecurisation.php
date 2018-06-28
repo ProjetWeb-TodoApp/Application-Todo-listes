@@ -56,4 +56,4 @@ function securiser($urlBad, $urlGood = false)
     }
 }
 
-?>
+

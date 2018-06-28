@@ -88,7 +88,7 @@ date_default_timezone_set('Europe/Paris');
 
 
         echo "<p> Supprimer la tâche </p>";
-        echo "<button type = 'submit' name='action' value='delete' />Delete</button>";
+        echo "<button type = 'submit' name='action' value='delete'>Delete</button>";
 
         // le bouton valider sert à indiquer si la tâche a été complétée
         echo "<p> Valider la tâche </p>";
