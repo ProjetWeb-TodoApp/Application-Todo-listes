@@ -59,18 +59,25 @@ if ($action = valider("action"))
 		break;
  
  
-		// on pourra attribuer les realisateurs
-		//Entrées: $tsk_title, $tsk_description, $tsk_
+		//New_task: crée une nouvelle tache à partir des données envoyées par 
+		//la view groupe avec la methode GET.
+		
 		case "new_task": 
+		//On valide toutes les valeurs qui viennent par le GET
 		if($tsk_title=valider("tsk_name")){
 			if($tsk_deadline=valider("tsk_deadline")){
 				$id_usr_tab=array();
-				for ($i = 1; $i <= 10; $i++) {
+				//Cette boucle parcours les entiers de 1 à 100, et verifie 
+				//si les vaiables ($i) sont définies.
+				//Ce sont les checkbox des membres du group qui sont nomées par des entiers,
+				//et on suppose qu'il y en aura moins de 100 par pôle.
+				for ($i = 1; $i <= 100; $i++) {
 					if (valider("$i")){
 						array_push($id_usr_tab,$i);}
 				}
 				if($grp_id=valider("grp_id")){
 					if($tsk_description=valider("tsk_description")){
+					//tout est vérifié, on peut appeler la fonction de création dans modele.
 						new_task($tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
 					}
 				}
@@ -78,6 +85,8 @@ if ($action = valider("action"))
 		}
 		break;
 		
+		//Le case edit fonctionne comme le new_task sauf qu'il n'a pas exactement
+		// les mêmes paramètres, et appelle edit_task.
 		case "edit_task":
             $urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
             // On redirige vers la page index avec les bons arguments
@@ -87,14 +96,15 @@ if ($action = valider("action"))
 			if($tsk_title=valider("tsk_name")){
 				if($tsk_deadline=valider("tsk_deadline")){
 					$id_usr_tab=array();
-					for ($i = 1; $i <= 10; $i++) {
+					for ($i = 1; $i <= 100; $i++) {
 						if (valider("$i")){
 							array_push($id_usr_tab,$i);
 						}
 					}
 					
 					if($tsk_description=valider("tsk_description")){
-						edit_task($tsk_id,$tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
+					// fonction créée dans le modele
+						edit_task($tsk_id,$tsk_title,$tsk_description,$tsk_deadline,$id_usr_tab);
 					}
 					
 				}
@@ -102,8 +112,10 @@ if ($action = valider("action"))
 		}
 		break;
 		
+		//Permet de supprimer une tache.
 		case "delete":
 			if ($tsk_id=valider("tsk_id")) {
+			//fonction créée dans le modele.
                 delete_task($tsk_id);
             }
 		break;

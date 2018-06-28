@@ -84,8 +84,10 @@ date_default_timezone_set('Europe/Paris');
 
 
         <p>Choose who will work on this task</p>
+		<!-- On crée des checkbox pour selectionner les membres du pôle à charger de la réalisation
         <?php
 		$grp_id=valider("grp_id");
+		//On crée le tableau de membres du pôle qu'on va parcourir.
         $tab_grp_members = grp_members($grp_id);
          foreach ($tab_grp_members as $member) {
              echo "<input type='checkbox' name='$member[id]' id='$member[id]'>";
