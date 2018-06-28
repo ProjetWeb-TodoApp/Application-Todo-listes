@@ -43,8 +43,8 @@ function prompt_task_user($usr_id) {
 }
 
 
-function edit_task($id_task, $title,$description,$deadline,$id_group,$id_usr_tab){
-    $sql="UPDATE task SET title='$title', description= '$description',deadline='$deadline',id_group=$id_group WHERE id=$id_task";
+function edit_task($id_task, $description,$deadline,$id_group,$id_usr_tab){
+    $sql="UPDATE task SET description= '$description',deadline='$deadline',id_group=$id_group WHERE id=$id_task";
 
     SQLUpdate($sql);
 
