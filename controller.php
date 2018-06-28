@@ -64,14 +64,14 @@ if ($action = valider("action"))
 		case "new_task": 
 		if($tsk_title=valider("tsk_name")){
 			if($tsk_deadline=valider("tsk_deadline")){
-				$id_usr_tab=[];
+				$id_usr_tab=array();
 				for ($i = 1; $i <= 10; $i++) {
 					if (valider("$i")){
-						id_usr_tab.append(valider("$i"));}
+						array_push($id_usr_tab,$i);}
 				}
 				if($grp_id=valider("grp_id")){
 					if($tsk_description=valider("tsk_description")){
-						new_task($tsk_title,$tsk_description,$tsk_deadline,null,null,$grp_id,$id_usr_tab);
+						new_task($tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
 					}
 				}
 			}

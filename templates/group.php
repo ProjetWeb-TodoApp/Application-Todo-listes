@@ -36,8 +36,9 @@ if ($grp_id = valider('grp_id')) {
 	<section class="l-section">
        <h3> Team's tasks </h3>
         <?php
-        $user=$_SESSION["usr_id"];
-        if (is_group_manager($user)) {
+        $usr_id=$_SESSION["usr_id"];
+		$real_grp_id=prompt_group_user($usr_id);
+        if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {
             echo " <a href='index.php?view=task_creation&grp_id=$grp_id'><button>Add a new task</button></a>";
 		}
 	
@@ -48,16 +49,17 @@ if ($grp_id = valider('grp_id')) {
 			$grp_tasks = prompt_task_group($grp_id);}
 			//Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
 			// Le lien n'appparait que si l'utilisateur est en droit de la modifier
-			$user=$_SESSION["usr_id"];
+			$usr_id=$_SESSION["usr_id"];
+			$real_grp_id=prompt_group_user($usr_id);
             foreach ($grp_tasks as $task) {
 				
-				if (is_group_manager($user)) {echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";}
+				if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";}
                 echo "<div class='task task-listed'>";
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 echo "</div>";
-				if (is_group_manager($user)) {echo "</a>";}
+				if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {echo "</a>";}
             }
             ?>
         </div>

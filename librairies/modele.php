@@ -6,12 +6,16 @@ include_once('maLibSQL.pdo.php');
 //renvoi rien
 //les id des utlisateurs sont rentrés en tableaux dans usr_tab
 
-function new_task($title,$description=null,$deadline,$completion_date=null,$parent_task=null,$id_group,$id_usr_tab){
-    $sql="INSERT INTO task (id,title,description,deadline,completion_date,parent_task,id_group) VALUES (7,'$title', '$description', '$deadline', '$completion_date', $parent_task, $id_group)";
-    SQLInsert($sql);
+function new_task($title,$description=null,$deadline,$id_group,$id_usr_tab){
+    $sql="INSERT INTO task (title,description,deadline,id_group) VALUES ('$title', '$description', '$deadline' ,'$id_group')";
+    echo "$sql";
+	SQLInsert($sql);
+	
     $id_task=SQLGetChamp("SELECT id from task WHERE title='$title' AND description='$description'");
-    for ($i=0;$i<count($id_usr_tab);$i++){
-        $inser="INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],$id_task)";
+    echo "$id_task";
+	for ($i=0;$i<count($id_usr_tab);$i++){
+		echo "$id_usr_tab[$i]";
+        $inser="INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],'$id_task')";
         SQLInsert($inser);
     }
 
