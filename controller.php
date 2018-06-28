@@ -82,7 +82,7 @@ if ($action = valider("action"))
             $urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
             // On redirige vers la page index avec les bons arguments
 
-            header("Location:" . $urlBase . '?view=home&msg=bite');
+            header("Location:" . $urlBase . '?view=home&msg=fre');
 		if ($tsk_id=valider("tsk_id")){
 			if($tsk_title=valider("tsk_name")){
 				if($tsk_deadline=valider("tsk_deadline")){
