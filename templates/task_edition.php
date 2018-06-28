@@ -92,11 +92,11 @@ echo "<br>" . "<button type = 'submit' name='action' value='validate' >Validate<
 //on affiche la valeur actuelle de chaque caractéristique de la tâche et on ajoute les éditions
 //Deadline
 echo "<p>Deadline : $deadline </p>";
-echo "<input type='date' name='tsk_deadline' >";
-
+echo "<input type='date' name='tsk_deadline' />";
+echo "<br>";
 
 //Personnes réalisant la tâche
-echo "<Who works on this task? </p>";
+echo "<p> Who works on this task? </p>";
 foreach ($tab_grp_members as $member) {
     //on pré-check la checkbox si la personne est déjà assignée à la tâche
     if (is_task_member($tsk_id, $member["id"]))
