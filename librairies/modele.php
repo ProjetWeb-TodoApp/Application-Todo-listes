@@ -109,7 +109,7 @@ function check_user_BDD($login, $password)
         return $user[0]["id"];
     } else {
         return false;
-    };
+    }
 }
 
 //Renvoie si un user est chef de projet

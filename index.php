@@ -50,5 +50,5 @@ switch ($view) {
 include("templates/footer.php");
 
 
-?>
+
 

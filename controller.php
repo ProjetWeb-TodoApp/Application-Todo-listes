@@ -98,13 +98,13 @@ if ($action = valider("action")) {
                 }
                 if ($tsk_deadline = valider("tsk_deadline")) {
                     //tout est vérifié, on peut appeler la fonction de création dans modele.
-                    edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
-                    edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                    edit_task($tsk_id, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                    edit_task((int)$tsk_id, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
                 }
 				else{
 					$tsk_deadline=deadline_task($tsk_id);
-					edit_task($tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
-                    edit_task((int)$tsk_id, $tsk_title, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+					edit_task($tsk_id, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
+                    edit_task((int)$tsk_id, $tsk_description, $tsk_deadline, $grp_id, $id_usr_tab);
 				}
 				
             }
@@ -146,4 +146,3 @@ header("Location:" . $urlBase . $qs);
 //qs doit contenir le symbole '?'
 ob_end_flush();
 
-?>		

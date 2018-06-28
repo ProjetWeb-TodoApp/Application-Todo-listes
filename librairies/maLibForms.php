@@ -188,7 +188,7 @@ function mkLiens($tabData, $champLabel, $champCible, $urlBase = false, $nomCible
     // produira <a href="index.php?view=chat&idConv=1">Multimédia</a> ...
 }
 
-?>
+
 
 
 

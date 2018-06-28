@@ -186,4 +186,4 @@ function parcoursRs($result)
 }
 
 
-?>
+
