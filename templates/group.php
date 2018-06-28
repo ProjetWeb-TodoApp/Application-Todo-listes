@@ -36,6 +36,7 @@ if ($grp_id = valider('grp_id')) {
 	<section class="l-section">
        <h3> Team's tasks </h3>
         <?php
+		//On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
         $usr_id=$_SESSION["usr_id"];
 		$real_grp_id=prompt_group_user($usr_id);
         if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {
@@ -49,6 +50,7 @@ if ($grp_id = valider('grp_id')) {
 			$grp_tasks = prompt_task_group($grp_id);}
 			//Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
 			// Le lien n'appparait que si l'utilisateur est en droit de la modifier
+			//On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
 			$usr_id=$_SESSION["usr_id"];
 			$real_grp_id=prompt_group_user($usr_id);
             foreach ($grp_tasks as $task) {

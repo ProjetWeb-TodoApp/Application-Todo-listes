@@ -15,9 +15,7 @@ date_default_timezone_set('Europe/Paris');
 ?>
 
 
-<html>
-<head>
-    <title>Edit a task</title>
+
 
     <script src="js/jquery-3.3.1.min.js"></script>
 
@@ -55,7 +53,8 @@ date_default_timezone_set('Europe/Paris');
     </script>
 </head>
 
-<body>
+<main>
+<section class="l-section">
 <?php
 $tsk_id = getValue("tsk_id");
 
@@ -83,11 +82,11 @@ echo "<input  name='tsk_id' value = $tsk_id type='hidden' />";
 //on récupère de la même manière la date de soumission du formulaire, on aura ainsi la date de réalisation de la tâche si on la valide
 echo "<input  name='date' value = $current_date type='hidden' />";
 echo "<p> Supprimer la tâche </p>";
-echo "<input type = 'submit' name='action' value='delete' />";
+echo "<button type = 'submit' name='action' value='delete' />Delete</button>";
 
 // le bouton valider sert à indiquer si la tâche a été complétée
 echo "<p> Valider la tâche </p>";
-echo "<br>" . "<input type = 'submit' name='action' value='validate' />";
+echo "<br>" . "<button type = 'submit' name='action' value='validate' >Validate</button>";
 
 
 //on affiche la valeur actuelle de chaque caractéristique de la tâche et on ajoute les éditions
@@ -122,15 +121,13 @@ echo "<div id='checklist'>
         </div>
         <br>";
 
-echo"<input type='submit' name='action' value='edit_task'/>";
+echo"<button type='submit' name='action' value='edit_task'>Edit Task</button>";
 
 echo "</form>";
 ?>
 
-
-</body>
-</html>
-
+</section>
+</main>
 
 
 

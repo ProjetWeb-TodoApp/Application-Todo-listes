@@ -79,7 +79,24 @@ if ($action = valider("action"))
 		break;
 		
 		case "edit_task":
-		// on pourra attribuer les realisateurs
+		
+		if ($tsk_id=valider("tsk_id")){
+			if($tsk_title=valider("tsk_name")){
+				if($tsk_deadline=valider("tsk_deadline")){
+					$id_usr_tab=array();
+					for ($i = 1; $i <= 10; $i++) {
+						if (valider("$i")){
+							array_push($id_usr_tab,$i);
+						}
+					}
+					
+					if($tsk_description=valider("tsk_description")){
+						edit_task($tsk_title,$tsk_description,$tsk_deadline,$grp_id,$id_usr_tab);
+					}
+					
+				}
+			}
+		}
 		break;
 		
 		case "delete":

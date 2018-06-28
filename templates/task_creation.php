@@ -117,7 +117,7 @@ date_default_timezone_set('Europe/Paris');
         <div id="checklist">
         </div>
         <br>
-        <input type="submit" name="action" value="new_task">Create Task</input>
+        <button type="submit" name="action" value="new_task">Create Task</button>
     </form>
 
 </section>
