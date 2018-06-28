@@ -25,7 +25,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
             -->
             <input type="text" name="login" placeholder="Login">
             <input type="password" name="password" placeholder="Password">
-            <button type="submit" name="action" value="login" >Log in</button>
+            <button type="submit" name="action" value="login">Log in</button>
         </form>
 
 

@@ -11,15 +11,15 @@ if (basename($_SERVER["PHP_SELF"]) == "group.php") {
     die("");
 }
 //ON GARDE LA CONFIDENTIALITE, ON NE PEUT VENIR QU'EN ETANT CONNECTE
-if (!isset($_SESSION["usr_id"])){
-	header("Location:index.php?view=login");
+if (!isset($_SESSION["usr_id"])) {
+    header("Location:index.php?view=login");
     die("");
 }
 
 
 if ($grp_id = valider('grp_id')) {
-	
-	$grp_tasks = prompt_task_group($grp_id);
+
+    $grp_tasks = prompt_task_group($grp_id);
 
 }
 
@@ -32,30 +32,31 @@ if ($grp_id = valider('grp_id')) {
         <div id="timeline"></div>
 
     </section>
-	
-	<section class="l-section">
-       <h3> Team's tasks </h3>
+
+    <section class="l-section">
+        <h3> Team's tasks </h3>
         <?php
-		//On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
-        $usr_id=$_SESSION["usr_id"];
-		$real_grp_id=prompt_group_user($usr_id);
-        if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {
+        //On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
+        $usr_id = $_SESSION["usr_id"];
+        if (is_group_manager($usr_id, $grp_id)) {
             echo " <a href='index.php?view=task_creation&grp_id=$grp_id'><button>Add a new task</button></a>";
-		}
-	
+        }
+
         ?>
-		<div class="grp_next_tasks">
+        <div class="grp_next_tasks">
             <?php
-			if ($grp_id= valider('grp_id')) {
-			$grp_tasks = prompt_task_group($grp_id);}
-			//Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
-			// Le lien n'appparait que si l'utilisateur est en droit de la modifier
-			//On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
-			$usr_id=$_SESSION["usr_id"];
-			$real_grp_id=prompt_group_user($usr_id);
+            if ($grp_id = valider('grp_id')) {
+                $grp_tasks = prompt_task_group($grp_id);
+            }
+            //Chaque tache constitue un lien qui renvoie vers la page de l'edition de cette tache.
+            // Le lien n'appparait que si l'utilisateur est en droit de la modifier
+            //On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
+            $usr_id = $_SESSION["usr_id"];
             foreach ($grp_tasks as $task) {
-				
-				if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";}
+
+                if (is_group_manager($usr_id, $grp_id)) {
+                    echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
+                }
                 echo "<div class='task task-listed'>";
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
@@ -63,20 +64,22 @@ if ($grp_id = valider('grp_id')) {
                 //si la tâche est réalisée on affiche OK
                 if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
                 echo "</div>";
-				if (((is_group_manager($usr_id))&&($real_grp_id==$grp_id))||(is_project_manager($usr_id))) {echo "</a>";}
+                if (((is_group_manager($usr_id, $grp_id)) && ($real_grp_id == $grp_id)) || (is_project_manager($usr_id))) {
+                    echo "</a>";
+                }
             }
             ?>
         </div>
-		
-		
-	</section>
+
+
+    </section>
 </main>
 <script type="text/javascript" defer>
     let tasks =<?php echo json_encode($grp_tasks)?>;
     console.log(tasks);
     let today = new Date();
-    today= today.toISOString().slice(0,10).replace(/-/g,"/");
-    let timeline_tasks = [{'date': today, 'name': 'Today', 'description': "",'background':'var(--accent-color)'}];
+    today = today.toISOString().slice(0, 10).replace(/-/g, "/");
+    let timeline_tasks = [{'date': today, 'name': 'Today', 'description': "", 'background': 'var(--accent-color)'}];
     for (let task of tasks) {
         console.log(task);
         timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})
