@@ -121,7 +121,7 @@ function is_project_manager($id)
 
 
 //Renvoie le group d'un utilisateur
-//Renvoie le groupe d'un utilisateur
+
 
 function prompt_group_user($usr_id)
 {

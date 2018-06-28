@@ -185,6 +185,8 @@ button:hover {
 }
 
 /* ---------------- Menu ----------------------*/
+
+#my_grp {text-decoration: underline; font-weight: bold; }
 .menu > ul {
     display: flex;
     flex-direction: row;
