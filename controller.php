@@ -86,7 +86,7 @@ if ($action = valider("action")) {
 
             //On valide toutes les valeurs qui viennent par le GET
             if($tsk_id=valider('tsk_id')) {
-                if ($tsk_title = valider("tsk_name")) {
+                
                     if ($tsk_deadline = valider("tsk_deadline")) {
                         $id_usr_tab = array();
                         //Cette boucle parcours les entiers de 1 à 100, et verifie
@@ -106,7 +106,7 @@ if ($action = valider("action")) {
                             }
                         }
                     }
-                }
+                
             }
             break;
 
