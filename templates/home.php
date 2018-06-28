@@ -31,16 +31,21 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
         <div class="usr_next_tasks">
             <?php
             foreach ($tasks as $task) {
-                if (deadline_task($task['id'])< date("Y-m-d")){echo "<div class='task task-listed late'>";}
-                else{echo "<div class='task task-listed'>";}
-
-                    echo "<h3>$task[title]</h3>";
-                    echo "<small>$task[deadline]</small>";
-                    echo "<p>$task[description]</p>";
-                    echo "</div>";
+                if (deadline_task($task['id']) < date("Y-m-d")) {
+                    echo "<div class='task task-listed late'>";
+                } else {
+                    echo "<div class='task task-listed'>";
+                }
+                echo "<h3>$task[title]</h3>";
+                echo "<small>$task[deadline]</small>";
+                echo "<p>$task[description]</p>";
+                //si la tâche est réalisée on affiche OK
+                if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
+                echo "</div>";
             }
             ?>
             <!--            <div class="task task-listed"></div>
+                        <div class="task task-listed"></div>-->
                         <div class="task task-listed"></div>-->
         </div>
     </section>

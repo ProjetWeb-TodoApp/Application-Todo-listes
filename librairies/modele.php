@@ -160,6 +160,13 @@ function validate_task($tsk_id, $date)
     SQLUpdate($sql);
 }
 
+// cette fonction prend en argument l'id d'une tâche et renvoie un booléen correspondant à l'état de la tâche, réalisée ou non
+function is_done($tsk_id) {
+    $sql="select completion_date from task where id='$tsk_id' and completion_date is not null";
+    $date=SQLSelect($sql);
+    if ($date == NULL) return false;
+    return true;
+}
 // cette fonction prend en argument l'id d'un user et d'une tâche et renvoie un booléen : true si l'utilisateur est assigné à la tâche, false sinon
 
 function is_task_member ($tsk_id, $usr_id){
