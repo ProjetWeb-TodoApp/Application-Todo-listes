@@ -206,3 +206,8 @@ function is_task_member($tsk_id, $usr_id)
     return false;
 
 }
+
+function task_group($task_id){
+    $sql="select id_group from task where id=$task_id";
+    SQLGetChamp($sql);
+}

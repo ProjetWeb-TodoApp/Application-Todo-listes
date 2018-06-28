@@ -19,6 +19,8 @@ if (!isset($_SESSION["usr_id"])) {
 
 //on va chercher les prochaines tasks pour l'user connecté
 $tasks = prompt_task_user($_SESSION["usr_id"]);
+$usr_id=$_SESSION["usr_id"];
+
 ?>
 
 <main class="l-main">
@@ -30,13 +32,23 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
         <h2>Your Next Tasks</h2>
         <div class="usr_next_tasks">
             <?php
+
             foreach ($tasks as $task) {
+
                 if (deadline_task($task['id']) < date("Y-m-d")) {
                     echo "<div class='task task-listed late'>";
                 } else {
                     echo "<div class='task task-listed'>";
                 }
-                echo "<h3>$task[title]</h3>";
+                echo "<h3>";
+                if (is_group_manager($usr_id, task_group($task["id"]))) {
+                    echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
+                }
+                echo "$task[title]";
+                if (is_group_manager($usr_id, task_group($task["id"]))) {
+                    echo "</a>";
+                }
+                echo "</h3>";
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK

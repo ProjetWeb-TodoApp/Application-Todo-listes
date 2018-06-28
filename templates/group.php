@@ -54,7 +54,7 @@ if ($grp_id = valider('grp_id')) {
             $usr_id = $_SESSION["usr_id"];
             foreach ($grp_tasks as $task) {
 
-                if (is_group_manager($usr_id, $grp_id)) {
+                if ((is_group_manager($usr_id, $grp_id)) ) {
                     echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
                 }
                 echo "<div class='task task-listed'>";
@@ -64,7 +64,7 @@ if ($grp_id = valider('grp_id')) {
                 //si la tâche est réalisée on affiche OK
                 if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
                 echo "</div>";
-                if (((is_group_manager($usr_id, $grp_id)) && ($real_grp_id == $grp_id)) || (is_project_manager($usr_id))) {
+                if ((is_group_manager($usr_id, $grp_id)) ) {
                     echo "</a>";
                 }
             }
