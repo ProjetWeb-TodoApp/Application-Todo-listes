@@ -53,11 +53,7 @@ date_default_timezone_set('Europe/Paris');
 
 <main>
 <section class="l-section">
-<?php
-        if ($msg = valider('msg')) {
-            echo('<p class="alerte">' . $msg . '</p>');
-        }
-        ?>
+
 <?php
 $tsk_id = getValue("tsk_id");
 
