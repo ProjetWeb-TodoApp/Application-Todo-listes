@@ -1,6 +1,6 @@
 
 <footer class="l-footer">
-Ninon LEFLOCH, Nicolas LEVY, Simon SUZAN, Iona Thomas, Simon VIAL
+Ninon LEFLOCH, Nicolas LEVY, Simon SUZAN, Iona THOMAS, Simon VIAL
 </footer>
 </body>
 
