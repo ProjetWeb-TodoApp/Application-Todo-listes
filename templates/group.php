@@ -55,8 +55,6 @@ if ($grp_id = valider('grp_id')) {
             foreach ($grp_tasks as $task) {
 
 
-                echo "<div class='task task-listed'>";
-                echo "<h3>";
                 if ((is_group_manager($usr_id, $grp_id)) ) {
                     echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
                 }

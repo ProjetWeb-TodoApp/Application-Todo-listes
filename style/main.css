@@ -305,7 +305,7 @@ a {
 }
 
 .late {
-    border: var(--alert-color) solid 1px;
+    border: var(--alert-color) solid 2px;
 }
 
 .late h3{
