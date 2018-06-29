@@ -40,7 +40,13 @@ $usr_id=$_SESSION["usr_id"];
                 elseif (deadline_task($task['id']) < date("Y-m-d")) echo " late";
                 echo "'>";
 
-                echo "<h3>$task[title]</h3>";
+            echo "<h3>";
+            if (is_group_manager($usr_id, task_group($task["id"]))) {
+                echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
+            }
+            echo "$task[title]";
+            if (is_group_manager($usr_id, task_group($task["id"]))) {
+                echo "</a>";}
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK
