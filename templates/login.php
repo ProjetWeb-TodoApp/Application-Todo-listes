@@ -15,7 +15,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
 
         <?php
         if ($msg = valider('msg')) {
-            echo('<p class="alerte">' . $msg . '</p>');
+            echo('<p class="alerte">' . htmlspecialchars($msg) . '</p>');
         }
         ?>
 
