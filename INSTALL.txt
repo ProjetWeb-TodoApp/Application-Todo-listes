@@ -1,0 +1,41 @@
+﻿INSTRUCTIONS D'INSTALLATION DE LA TODO APP:
+
+1) EMPLACEMENT DES FICHIERS
+
+Recopier l'intégralité des fichier et dossiers à l'interieur du dossier "proTask" 
+vers un dossier situé dans le www de votre MAMP ou WAMP.
+
+2) INTALLATION DE LA BASE DE DONNEES
+Une fois le dossier créé, l'ouvrir et trouver le fichier "todo_app.sql".
+Ouvrez ce fichier et copier l'intégralité de son code dans votre presse papier.
+Dans votre navigateur de base de données,( phpMyAdmin ou autres),
+vous connecter sur root et créer une base de données nomée "todo_app".
+Collez ensuite tout le contenu de votre presse papier dans le serveur SQL de la base de 
+données créée.
+Ensuite, il faut créer un nouveau compte d'utilisateur de base de données, 
+différent de root, et lui donner accès uniquement à la base "todo_app", 
+évitant ainsi de mettre en péril les autres donées du compte root.
+Modifiez alors le fichier "config_BDD.php" en accord avec vos informations de compte utilisateur de base de données.
+
+3) UTILISATION
+
+Pour tester les fonctionnalités de l'application web, il faudra vous connecter dans la 
+todo_app avec les données des utilisateurs renseignés dans la base de données.
+Les 5 identifiants et mots de passe qui permettront d'accéder à toutes les fonctionnalités
+de l'application sont ceux de Simon SUZAN, Smon VIAL, Nicolas LEVY, Ninon LEFLOCH et Iona
+THOMAS 
+
+Pour s'identifier, le formalisme choisit par le projet est le suivant:
+
+Pour Simon Suzan:
+Login: ssuzan
+Password: simonsimon
+
+Pour Ninon Lefloch:
+Login:nlefloch
+Password:ninonninon
+
+Le reste suit la même logique.
+
+ATTENTION! Aucun accès à l'application ne serait possible sans se connecter au préalable, 
+garantissant ainsi la confidentialité des informations.
