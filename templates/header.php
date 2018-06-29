@@ -24,13 +24,13 @@
             include_once "librairies/modele.php";
             //Code à insérer pour afficher la liste des pages disponibles
             if (valider("online", "SESSION")) {
-                echo "<li class=\"menu_item\"><a href=\"index.php?view=home\">Home</a></li>";
+                echo "<li class=\"menu_item usr_group\"><a href=\"index.php?view=home\">Home</a></li>";
                 $groups = prompt_grp();
+                $usr_groups=prompt_usr_groups($_SESSION["usr_id"]);
                 foreach ($groups as $grp) {
-
-                    echo "<li class=\"menu_item\"";
-                    if ($grp["id"]==prompt_group_user($_SESSION["usr_id"])){echo "id='my_grp'";}
-                    echo "><a href=\"index.php?view=group&grp_id=$grp[id]\">$grp[title] </a></li>";
+                    echo "<li class=\"menu_item ";
+                    if (in_array($grp["id"],$usr_groups)){echo " usr_group";}
+                    echo "\"><a href=\"index.php?view=group&grp_id=$grp[id]\">$grp[title] </a></li>";
                 }
             }
 

@@ -29,9 +29,6 @@ if (!$view) $view = "home";
 
 
 
-
-
-
 // En fonction de la vue à afficher, on appelle tel ou tel template
 switch ($view) {
     case "home" :
