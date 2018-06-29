@@ -67,7 +67,7 @@ if ($grp_id = valider('grp_id')) {
                 }
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
-                echo "</br><h3>Réalisateurs : </h3>";
+                echo "</br><h4>Réalisateurs : </h4>";
                 $members=prompt_user_task($task["id"]) ;
                 for ($i=0; $i<count($members);$i++){
                     echo $members[$i]["first_name"][0]." ";
@@ -80,7 +80,6 @@ if ($grp_id = valider('grp_id')) {
                 //si la tâche est réalisée on affiche OK
 
                 if (is_group_manager($usr_id, $grp_id)) {
-
                     echo "</a>";
                 }
 
