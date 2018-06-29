@@ -89,9 +89,11 @@ function prompt_checklist_task($id_task)
     return parcoursRs(SQLSelect($sql));
 
 }
- // creation d'une nouvelle checklist
+
+// creation d'une nouvelle checklist
 function new_checklist($tsk_id, $etat, $label)
-{ $sql="INSERT INTO checklist (id_task,state,title) VALUES ($tsk_id,$etat,$label)";
+{
+    $sql = "INSERT INTO checklist (id_task,state,title) VALUES ($tsk_id,$etat,$label)";
 
 }
 
@@ -118,13 +120,16 @@ function is_project_manager($id)
 }
 
 
-
 //Renvoie le group d'un utilisateur
-function prompt_group_user($usr_id)
+function prompt_usr_groups($usr_id)
 {
-    $sql = "SELECT groupe.id from belongs join groupe on groupe.id=belongs.id_group where belongs.id_user=$usr_id ";
-    return SQLGetChamp($sql);
-
+    $sql = "SELECT id_group from belongs where id_user=$usr_id ";
+    $usr_groups_PRS = ParcoursRS(SQLSelect($sql));
+    $usr_groups = [];
+    foreach ($usr_groups_PRS as $usr_group_PRS) {
+        array_push($usr_groups, $usr_group_PRS['id_group']);
+    }
+    return($usr_groups);
 }
 
 
@@ -157,7 +162,7 @@ function is_group_manager($id_user, $id_groupe = null)
 function grp_members($grp_id)
 {
     $sql = "SELECT user.first_name, user.last_name,user.id from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
-    return parcoursRS(SQLSelect($sql));
+    return ParcoursRS(SQLSelect($sql));
 }
 
 //renvoit tous les groupes
@@ -205,7 +210,8 @@ function is_task_member($tsk_id, $usr_id)
 }
 
 //renvoit le groupe qui realise cette tache
-function task_group($task_id){
-    $sql="select id_group from task where id=$task_id";
+function task_group($task_id)
+{
+    $sql = "select id_group from task where id=$task_id";
     SQLGetChamp($sql);
 }
