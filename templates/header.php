@@ -14,7 +14,9 @@
 
 <body class="l-body">
 <header class="l-header">
-    <h1 class="app_title"><a href="index.php?view=home">Todo App</a></h1>
+    <a href="index.php?view=home"><img 	id="logo"
+				src="ressources/logo.png" /></a>
+	
     <nav class="menu">
         <ul>
             <?php
