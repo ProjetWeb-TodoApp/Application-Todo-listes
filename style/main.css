@@ -17,7 +17,7 @@
     --light-primary-color: #CFD8DC;
     --accent-color: #8BC34A;
     --primary-text-color: #DDDDDD;
-    --secondary-text-color: #212121;
+    --secondary-text-color: #1f323c;
     --divider-color: #BDBDB;
 
     --alert-color: darkred;
@@ -97,7 +97,7 @@ a {
     padding: 0.5em 2em;
     align-items: baseline;
     justify-content: space-between;
-    min-height: 70px;
+    min-height: 90px;
 }
 
 .l-footer {
