@@ -55,9 +55,6 @@ if ($grp_id = valider('grp_id')) {
             foreach ($grp_tasks as $task) {
 
 
-                if ((is_group_manager($usr_id, $grp_id)) ) {
-                    echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
-                }
 
 
                 echo "<div class='task task-listed";
@@ -65,18 +62,23 @@ if ($grp_id = valider('grp_id')) {
                 elseif (deadline_task($task['id']) < date("Y-m-d")) echo " late";
                 echo "'>";
 
+                if ((is_group_manager($usr_id, $grp_id)) ) {
+                    echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
+                }
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK
-                if (is_done($task['id'])) echo "<strong>Done</strong>";
-                echo "</div>";
-
 
                 if (is_group_manager($usr_id, $grp_id)) {
 
                     echo "</a>";
                 }
+
+                if (is_done($task['id'])) echo "<strong>Done</strong>";
+                echo "</div>";
+
+
             }
             ?>
         </div>
