@@ -38,12 +38,14 @@
                 }
             }
 
+
             ?>
 
         </ul>
     </nav>
     <div class="account">
         <?php
+
         // Si l'utilisateur est connecte, on affiche un lien de deconnexion, sinon on affiche un lien de connexion
         if (valider("online", "SESSION")) {
 

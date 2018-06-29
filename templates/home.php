@@ -47,7 +47,7 @@ $usr_id=$_SESSION["usr_id"];
             echo "$task[title]";
             if (is_group_manager($usr_id, task_group($task["id"]))) {
                 echo "</a>";}
-                echo "<small>$task[deadline]</small>";
+                echo "</br><small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK
                 if (is_done($task['id'])) echo " <strong>Done</strong>";
