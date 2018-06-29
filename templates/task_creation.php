@@ -109,18 +109,20 @@ date_default_timezone_set('Europe/Paris');
 
 
                 <!--On n'a pas eu le temps durant ce mini-projet de gérer les dépendances de tâches -->
-                <p>
 
-                    What are the steps to complete this task ?
-                    <!-- l'édition des items de checklist va se faire en ajax sur la base du tp TinyCMS -->
+                <!-- cette partie n'a pas été implémentée en backend par manque de temps, on commente donc la partie du code qui réalisait l'affichage-->
 
-                <div id="checklist">
-                </div>
-                <br>
-                </p>
-                <button type="submit" name="action" value="new_task">Create Task</button>
+                <!-- <p> What are the steps to complete this task ? </p>-->
+                  <!-- l'édition des items de checklist va se faire en ajax sur la base du tp TinyCMS -->
 
-            </form>
+                <!-- <div id="checklist">-->
+                <!--  </div>-->
+                 <!-- <br>-->
 
-        </section>
-    </main>
+
+                 <button type="submit" name="action" value="new_task">Create Task</button>
+
+             </form>
+
+         </section>
+     </main>

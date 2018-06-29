@@ -118,14 +118,12 @@ date_default_timezone_set('Europe/Paris');
         echo " <p> Describe your task </p>";
         echo "<textarea name='tsk_description'> $description </textarea>";
 
-        //Dépendances
-        echo " <p> This tasks depends on </p>";
-
-
         // Checklist
+        /* cette partie n'a pas été implémentée en backend par manque de temps, on commente donc la partie du code qui réalisait l'affichage
         echo "<div id='checklist'>
         </div>
         <br>";
+*/
 
         echo "<button type='submit' name='action' value='edit_task'>Edit Task</button>";
 
