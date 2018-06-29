@@ -19,6 +19,8 @@ if (!isset($_SESSION["usr_id"])) {
 
 //on va chercher les prochaines tasks pour l'user connecté
 $tasks = prompt_task_user($_SESSION["usr_id"]);
+$usr_id=$_SESSION["usr_id"];
+
 ?>
 
 <main class="l-main">
@@ -28,19 +30,21 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
     </section>
     <section class="l-section">
         <h2>Your Next Tasks</h2>
-        <div class="usr_next_tasks">
+        <div class="tsk_list">
             <?php
+
             foreach ($tasks as $task) {
-                if (deadline_task($task['id']) < date("Y-m-d")) {
-                    echo "<div class='task task-listed late'>";
-                } else {
-                    echo "<div class='task task-listed'>";
-                }
+
+                echo "<div class='task task-listed";
+                if (is_done($task['id'])) echo " done";
+                elseif (deadline_task($task['id']) < date("Y-m-d")) echo " late";
+                echo "'>";
+
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK
-                if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
+                if (is_done($task['id'])) echo " <strong>Done</strong>";
                 echo "</div>";
             }
             ?>
@@ -54,26 +58,31 @@ $tasks = prompt_task_user($_SESSION["usr_id"]);
 
 <script type="text/javascript" defer>
     let tasks =<?php echo json_encode($tasks)?>;
-    //console.log(tasks);
     let today = new Date();
     let str_today = today.toISOString().slice(0, 10).replace(/-/g, "/");
     //console.log(Date.parse(today));
     let timeline_tasks = [{'date': str_today, 'name': 'Today', 'description': "", 'background': 'var(--accent-color)'}];
     for (let task of tasks) {
-        let date_task = Date.parse(task['deadline']);
-        //console.log(date_task);
-        //console.log(date_task >= Date.parse(today));
-        if (date_task > Date.parse(today)) {
-            //console.log(task);
-            timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})
-        }
-        else {
-            timeline_tasks.push({
-                'name': task['title'],
-                'description': task['description'],
-                'date': task['deadline'],
-                'background': 'var(--alert-color)'
-            })
+        if (task['completion_date'] === null) {
+            let date_task = Date.parse(task['deadline']);
+            //console.log(date_task);
+            //console.log(date_task >= Date.parse(today));
+            if (date_task > Date.parse(today)) {
+                //console.log(task);
+                timeline_tasks.push({
+                    'name': task['title'],
+                    'description': task['description'],
+                    'date': task['deadline']
+                })
+            }
+            else {
+                timeline_tasks.push({
+                    'name': task['title'],
+                    'description': task['description'],
+                    'date': task['deadline'],
+                    'background': 'var(--alert-color)'
+                })
+            }
         }
     }
     console.log(timeline_tasks);

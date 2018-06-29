@@ -74,6 +74,9 @@ button:hover {
     background-color: var(--primary-text-color);
 }
 
+a {
+    text-decoration: none;
+}
 /*---------------------------------------------*\
                      LAYOUT
 \*---------------------------------------------*/
@@ -185,6 +188,8 @@ button:hover {
 }
 
 /* ---------------- Menu ----------------------*/
+
+#my_grp {text-decoration: underline; font-weight: bold; }
 .menu > ul {
     display: flex;
     flex-direction: row;
@@ -254,7 +259,7 @@ button:hover {
 
 /* ------------------ Home --------------------*/
 
-.usr_next_tasks {
+.tsk_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -277,6 +282,7 @@ button:hover {
     max-width: 25em;
     min-width: 15em;
     margin: 1em;
+    text-decoration: unset;
 
 }
 
@@ -292,6 +298,19 @@ button:hover {
     font-size: 15px;
 }
 
+.done{
+    background: transparent;
+    border: var(--light-primary-color) solid 1px;
+    color: var(--light-primary-color);
+}
+
+.late {
+    border: var(--alert-color) solid 2px;
+}
+
+.late h3{
+    color: var(--alert-color);
+}
 /*---------------------------------------------*\
                      STATE
 \*---------------------------------------------*/

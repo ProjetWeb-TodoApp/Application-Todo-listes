@@ -34,7 +34,7 @@ if ($grp_id = valider('grp_id')) {
     </section>
 
     <section class="l-section">
-        <h3> Team's tasks </h3>
+        <h2> Team's tasks </h2>
         <?php
         //On vérifie bien que l'utilisateur a le droit d'aller sur la réation de tache
         $usr_id = $_SESSION["usr_id"];
@@ -43,7 +43,7 @@ if ($grp_id = valider('grp_id')) {
         }
 
         ?>
-        <div class="grp_next_tasks">
+        <div class="tsk_list">
             <?php
             if ($grp_id = valider('grp_id')) {
                 $grp_tasks = prompt_task_group($grp_id);
@@ -54,17 +54,27 @@ if ($grp_id = valider('grp_id')) {
             $usr_id = $_SESSION["usr_id"];
             foreach ($grp_tasks as $task) {
 
-                if (is_group_manager($usr_id, $grp_id)) {
+
+                if ((is_group_manager($usr_id, $grp_id)) ) {
                     echo "<a href=index.php?view=task_edition&tsk_id=$task[id]>";
                 }
-                echo "<div class='task task-listed'>";
+
+
+                echo "<div class='task task-listed";
+                if (is_done($task['id'])) echo " done";
+                elseif (deadline_task($task['id']) < date("Y-m-d")) echo " late";
+                echo "'>";
+
                 echo "<h3>$task[title]</h3>";
                 echo "<small>$task[deadline]</small>";
                 echo "<p>$task[description]</p>";
                 //si la tâche est réalisée on affiche OK
-                if (is_done($task['id'])) echo " <h4 style='color:red;'>Done</h4>";
+                if (is_done($task['id'])) echo "<strong>Done</strong>";
                 echo "</div>";
+
+
                 if (is_group_manager($usr_id, $grp_id)) {
+
                     echo "</a>";
                 }
             }
@@ -81,8 +91,27 @@ if ($grp_id = valider('grp_id')) {
     today = today.toISOString().slice(0, 10).replace(/-/g, "/");
     let timeline_tasks = [{'date': today, 'name': 'Today', 'description': "", 'background': 'var(--accent-color)'}];
     for (let task of tasks) {
-        console.log(task);
-        timeline_tasks.push({'name': task['title'], 'description': task['description'], 'date': task['deadline']})
+        if (task['completion_date'] === null) {
+            let date_task = Date.parse(task['deadline']);
+            //console.log(date_task);
+            //console.log(date_task >= Date.parse(today));
+            if (date_task > Date.parse(today)) {
+                //console.log(task);
+                timeline_tasks.push({
+                    'name': task['title'],
+                    'description': task['description'],
+                    'date': task['deadline']
+                })
+            }
+            else {
+                timeline_tasks.push({
+                    'name': task['title'],
+                    'description': task['description'],
+                    'date': task['deadline'],
+                    'background': 'var(--alert-color)'
+                })
+            }
+        }
     }
     console.log(timeline_tasks);
 
@@ -90,7 +119,6 @@ if ($grp_id = valider('grp_id')) {
         horizontalLayout: false, height: 450, width: 200, showLabels:
             true, labelFormat: "%d/%m/%Y", dateFormat: "%d/%m/%Y"
     });
-
 
 </script>
 

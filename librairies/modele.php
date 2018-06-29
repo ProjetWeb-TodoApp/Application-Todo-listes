@@ -43,33 +43,26 @@ function prompt_user_task($id_task)
 //Renvoie les taches d'un utilisateur
 function prompt_task_user($usr_id)
 {
-    $sql = "SELECT t.title, t.description, t.deadline, t.id from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
+    $sql = "SELECT t.title, t.description, t.deadline, t.id, t.completion_date from task as t join realize as r on r.id_task = t.id where r.id_user=$usr_id";
     return parcoursRs(SQLSelect($sql));
 }
 
-
+//mise a jour d'une tache
 function edit_task($id_task, $description, $deadline, $id_group, $id_usr_tab)
 {
-    $sql = "UPDATE task SET description= '$description',deadline='$deadline',id_group=$id_group WHERE id=$id_task";
+    $sql = "UPDATE task SET description= '$description',deadline='$deadline',id_group=$id_group WHERE id=$id_task";              //mise a jour des caracteristiques p^rporpes de la tache
 
     SQLUpdate($sql);
 
-    $del = "DELETE FROM realize where id_task=$id_task";
+    $del = "DELETE FROM realize where id_task=$id_task";                                                                         //RAZ des participants
     SQLDelete($del);
-    for ($i = 0; $i < count($id_usr_tab); $i++) {
+    for ($i = 0; $i < count($id_usr_tab); $i++) {                                                                                 // ajout de la nouvelle liste des participants
 
         $inser = "INSERT INTO realize (id_user,id_task) VALUES($id_usr_tab[$i],$id_task)";
         SQLInsert($inser);
     }
 }
 
-
-function dont_realize_tsk($id_usr, $id_tsk)
-{
-    $sql = "SELECT * FROM realize WHERE id_user='$id_usr' AND id_task='$id_tsk'";
-    return (SQLGetChamp($sql) == False);
-
-}
 
 //renvoit la liste des taches qui devraient etre terminees avant la date passée en entrée
 //entrée: date(format:"année-mois-jour")
@@ -79,6 +72,8 @@ function deadline_task($id)
     return SQLGetChamp($sql);
 }
 
+
+//supprime une tache
 function delete_task($id_task)
 {
     $sql = "delete from task where id=$id_task";
@@ -94,12 +89,15 @@ function prompt_checklist_task($id_task)
     return parcoursRs(SQLSelect($sql));
 
 }
-
+ // creation d'une nouvelle checklist
 function new_checklist($tsk_id, $etat, $label)
-{
+{ $sql="INSERT INTO checklist (id_task,state,title) VALUES ($tsk_id,$etat,$label)";
 
 }
 
+// verifie si un mdp corespond a l'id passé en entree
+//renvoi l'id de l'utilisateur si la connexion peut se faire
+//renvoi false sinon
 
 function check_user_BDD($login, $password)
 {
@@ -120,9 +118,8 @@ function is_project_manager($id)
 }
 
 
-//Renvoie le group d'un utilisateur
-//Renvoie le groupe d'un utilisateur
 
+//Renvoie le group d'un utilisateur
 function prompt_group_user($usr_id)
 {
     $sql = "SELECT groupe.id from belongs join groupe on groupe.id=belongs.id_group where belongs.id_user=$usr_id ";
@@ -156,21 +153,21 @@ function is_group_manager($id_user, $id_groupe = null)
     return False;
 }
 
-
+//renvoit les membres d'un groupe
 function grp_members($grp_id)
 {
     $sql = "SELECT user.first_name, user.last_name,user.id from user join belongs on user.id=belongs.id_user where belongs.id_group=$grp_id";
     return parcoursRS(SQLSelect($sql));
 }
 
-
+//renvoit tous les groupes
 function prompt_grp()
 {
     $sql = "SELECT title, id FROM groupe ";
     return parcoursRS(SQLSelect($sql));
 }
 
-
+//affiche toutes les infos d'une tache
 function prompt_task($tsk_id)
 {
     $sql = "SELECT * FROM task WHERE id='$tsk_id'";
@@ -205,4 +202,10 @@ function is_task_member($tsk_id, $usr_id)
     }
     return false;
 
+}
+
+//renvoit le groupe qui realise cette tache
+function task_group($task_id){
+    $sql="select id_group from task where id=$task_id";
+    SQLGetChamp($sql);
 }
