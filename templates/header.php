@@ -30,6 +30,10 @@
                 foreach ($groups as $grp) {
                     echo "<li class=\"menu_item ";
                     if (in_array($grp["id"],$usr_groups)){echo " usr_group";}
+                    if($current_grp_id=valider('grp_id') and  $current_grp_id==$grp['id']) {
+                        echo " current_grp";
+                    }
+
                     echo "\"><a href=\"index.php?view=group&grp_id=$grp[id]\">$grp[title] </a></li>";
                 }
             }
