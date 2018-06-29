@@ -126,8 +126,7 @@ a {
     border-radius: 1em;
     flex-grow: 1;
     min-width: 25em;
-    min-height: 510px;
-    /*overflow-y: scroll;*/
+    min-height: 400px;
 }
 
 .l-section-small {
@@ -136,9 +135,10 @@ a {
     margin: 0.5em;
     width: 25em;
     border-radius: 1em;
-    min-height: 510px;
+    min-height: 0;
 }
 
+/*Début d'adaptation pour les téléphones*/
 @media screen and (max-width: 60em) {
     .l-main {
         flex-direction: column;
@@ -277,6 +277,7 @@ a {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: stretch;
 }
 
 /*TIMELINE*/

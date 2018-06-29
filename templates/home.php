@@ -32,7 +32,6 @@ $usr_id=$_SESSION["usr_id"];
         <h2>Your Next Tasks</h2>
         <div class="tsk_list">
             <?php
-
             foreach ($tasks as $task) {
 
                 echo "<div class='task task-listed";
