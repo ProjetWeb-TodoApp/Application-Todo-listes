@@ -74,7 +74,7 @@ date_default_timezone_set('Europe/Paris');
         echo "<h1>" . $tsk_data['title'] . "</h1>";
 
         if ($msg = valider('msg')) {
-            echo('<p class="alerte">' . $msg . '</p>');
+            echo('<p class="alerte">' . htmlspecialchars($msg) . '</p>');
         }
 
         echo "<form action='controller.php' method='GET'>";
