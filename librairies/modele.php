@@ -141,9 +141,9 @@ function is_group_manager($id_user, $id_groupe = null)
     if (is_project_manager($id_user)) return True;
     else {
         if ($id_groupe != null) {
-            $sql = "SELECT groupe.id FROM groupe JOIN belongs ON groupe.id=belongs.id_group WHERE belongs.id_user=$id_user AND belongs.id_group=$id_groupe";
-            $grp = SQLSelect($sql);
-            if ($grp) {
+            $sql = "SELECT id_group_manager FROM groupe where id=$id_groupe";
+            $id_grp_manager = SQLGetChamp($sql);
+            if ($id_user==$id_grp_manager) {
                 return (true);
             }
         } else {
