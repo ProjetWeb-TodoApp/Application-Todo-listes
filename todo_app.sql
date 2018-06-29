@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 28 juin 2018 à 13:43
+-- Généré le :  ven. 29 juin 2018 à 11:19
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -54,6 +54,7 @@ INSERT INTO `belongs` (`id_user`, `id_group`) VALUES
 (16, 2),
 (19, 2),
 (20, 2),
+(21, 2),
 (4, 3),
 (6, 3),
 (9, 3),
@@ -151,10 +152,24 @@ INSERT INTO `realize` (`id_user`, `id_task`) VALUES
 (1, 4),
 (5, 4),
 (17, 4),
-(4, 5),
-(6, 5),
-(9, 5),
-(18, 5);
+(18, 5),
+(2, 12),
+(10, 12),
+(11, 12),
+(5, 13),
+(4, 14),
+(6, 14),
+(5, 15),
+(17, 15),
+(4, 16),
+(9, 16),
+(3, 17),
+(8, 17),
+(20, 17),
+(3, 18),
+(8, 18),
+(13, 18),
+(15, 18);
 
 -- --------------------------------------------------------
 
@@ -172,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `parent_task` int(24) DEFAULT NULL,
   `id_group` int(24) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Déchargement des données de la table `task`
@@ -181,9 +196,16 @@ CREATE TABLE IF NOT EXISTS `task` (
 INSERT INTO `task` (`id`, `title`, `description`, `deadline`, `completion_date`, `parent_task`, `id_group`) VALUES
 (1, 'Modélisation mécanique de la planche de surf', 'Modélisation en CAO de la planche, en prenant en compte les efforts dynamques de l\'eau sur l\'aileron et la surface au contact avec l\'eau.', '2018-06-30', NULL, NULL, 1),
 (2, 'Simulation aérodynamique de la planche de surf', 'Simulation numérique des efforts et contraintes et exercés sur la planche ainsi que la vitesse du moteur de la planche en fonction des vagues et des courants', '2018-07-05', NULL, 1, 1),
-(3, 'Dimensionnement du moteur électrique de la planche', 'Dimensionner les différents éléments du moteur de la planche en fonction des contraintes du cahier des charges', '2018-07-19', NULL, 4, 2),
+(3, 'Dimensionnement du moteur électrique de la planche', 'Dimensionner les différents éléments du moteur de la planche en fonction des contraintes du cahier des charges', '2018-07-19', '2018-06-28', 4, 2),
 (4, 'Rédaction du cahier des charges', 'Rédaction complet du cahier des charges en discutant avec les différents clients pour satisfaire leurs exigences vis à vis de la conception de la planche de surf.', '2018-06-23', NULL, NULL, 4),
-(5, 'Réalisation du budget du projet', 'Rédaction du budget et des différentes commandes de matériel en partenariat avec les différents pôles du projet.', '2018-07-27', NULL, NULL, 3);
+(5, 'Réalisation du budget du projet', ' Rédaction du budget et des différentes commandes de matériel en partenariat avec les différents pôles du projet. ', '2018-07-27', NULL, NULL, 3),
+(12, 'Réaliser un prototype de l\'aileron inférieur', ' Réalisation grâce aux imprimantes 3D du fablab du prototype de l\'aileron inférieur ', '2018-07-27', NULL, NULL, 1),
+(13, 'Rédaction de la convention ', ' Déterminer la confidentialité et les conditions de propriété intellectuelle avec les sponsors et les partenaires du projet. ', '2018-07-11', NULL, NULL, 4),
+(14, 'Budgétiser le prototype', ' Evaluer le coût du prototype en prenant en compte la matière première ainsi que les services du fablab. ', '2018-06-30', NULL, NULL, 3),
+(15, 'Rédaction du compte rendu de la dernière réunion', ' Comme d\'habitude, gérer l\'organisation et les tâches à effectuer ', '2018-06-28', NULL, NULL, 4),
+(16, 'Faire un benchmarking des solutions existantes', ' En se basant sur les documents transmis par le partenaire. ', '2018-07-19', NULL, NULL, 3),
+(17, 'Modélisation électrique de la planche', ' Modéliser l\'électronique de commande des différents ailerons ', '2018-07-18', NULL, NULL, 2),
+(18, ' Analyse de la CEM de la planche', ' Analyser la compatibilité électronique magnétique du moteur de la planche ', '2018-07-07', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -201,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `project_manager` tinyint(1) NOT NULL,
   `mail` varchar(100) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
@@ -227,7 +249,8 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `login`, `password`, `proje
 (17, 'Camille', 'Brunet', 'cbrunet', 'camillecamille', 0, 'camille.brunet@centrale.centralelille.fr'),
 (18, 'Noah', 'Philippe', 'nphilippe', 'noahnoah', 0, 'noah.phiippe@centrale.centralelille.fr'),
 (19, 'Hugo', 'Gitton', 'hgitton', 'hugohugo', 0, 'hugo.gitton@centrale.centralelille.fr'),
-(20, 'Maximilien', 'Grattepanche', 'mgrattepanche', 'maximilienmaximilien', 0, 'maximilien.grattepanche@centrale.centralelille.fr');
+(20, 'Maximilien', 'Grattepanche', 'mgrattepanche', 'maximilienmaximilien', 0, 'maximilien.grattepanche@centrale.centralelille.fr'),
+(21, 'Iona', 'Thomas', 'ithomas', 'ionaiona', 0, 'iona.thomas@centrale.centralelille.fr');
 
 --
 -- Contraintes pour les tables déchargées
